@@ -1,0 +1,171 @@
+
+
+
+$clr-bcg-lignt: rgb(255, 190, 106);
+$clr-font-light: rgb(0, 0, 0);
+
+$clr-bcg-dark: rgb(70, 44, 2);
+$clr-font-dark: rgb(253, 253, 253);
+
+
+$padding-margin-ex-lg: 150px;
+$padding-margin-lg: 100px;
+$padding-margin-md: 70px;
+$padding-margin-sm: 50px;
+$padding-margin-ex-sm: 30px;
+
+$transition: all 0.3s ease-in-out;
+//query
+$large: 1100px;
+$ex-medium: 900px;
+$medium: 768px;
+$small: 550px;
+$extraSmall: 450px;
+
+$heading: 70px;
+$heading-sm: 50px;
+$h1: 35px;
+$h2: 30px;
+$h3: 25px;
+$h4: 20px;
+$font-base: 16px;
+$font-base-lg: 18px;
+
+
+@mixin content($color-default, $color-main) {
+    nav{
+        padding: 20px $padding-margin-md;
+        @media (max-width: $extraSmall) {
+          padding: 10px $padding-margin-ex-sm;
+        }
+        .nav-container{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .link-container{
+            flex: 1;
+            @media (max-width: $ex-medium) {
+              display: none;
+            }
+            ul{
+              display: flex;
+              justify-content: space-between;
+              li{
+                a{
+                  font-size: $font-base-lg;
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+          .logo-container{
+            flex: 1;
+            text-align: center;
+            @media (max-width: $ex-medium) {
+              text-align: left;
+            }
+            h1{
+              color: #fff;
+              font-size: $h2;
+            }
+          }
+          .cart-menu{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .search-container{
+              flex: 1;
+              text-align: center;
+              @media (max-width: $ex-medium) {
+                display: none;
+              }
+              span{
+                font-size: $font-base-lg;
+                cursor: pointer;
+              }
+              form{
+                display: none;
+              }
+            }
+            .cart-container{
+              flex: 1;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              @media (max-width: $ex-medium) {
+                justify-content: flex-end;
+              }
+              .dark-mood{
+                @media (max-width: $ex-medium) {
+                  margin-right: 20px;
+                }
+                span{
+                  font-size: $font-base-lg;
+                  @media (max-width: $ex-medium) {
+                    font-size: 12px;
+                  }
+                }
+              }
+              .cart-icon{
+                position: relative;
+                @media (max-width: $ex-medium) {
+                  margin-right: 20px;
+                }
+                span{
+                  font-size: $h3;
+                  z-index: 1;
+                  cursor: pointer;
+                }
+                .item-total{
+                  position: absolute;
+                  top: -10px;
+                  right: -10px;
+                  background-color: #fff;
+                  border-radius: 10px;
+                  width: 15px;
+                  height: 20px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  z-index: -1;
+                  color: #000;
+                  font-size: 15px;
+                }
+              }
+              .cart-items-price{
+                @media (max-width: $ex-medium) {
+                  display: none;
+                }
+                span{
+                  font-size: $font-base-lg;
+                }
+                .spacial-tag{
+                  color: #fff;
+                }
+              }
+
+              .menu{
+                display: none;
+                @media (max-width: $ex-medium) {
+                  display: block;
+                }
+                span{
+                  font-size: $h2;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+    }
+  }
+  
+  .light-theme {
+    @include content($clr-bcg-lignt, $clr-font-light);
+  }
+  
+  .dark-theme {
+    @include content($clr-bcg-dark, $clr-font-dark);
+  }
+  

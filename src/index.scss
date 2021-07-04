@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700;900&display=swap');
+  
+  
+  $clr-bcg-lignt: rgb(255, 190, 106);
+  $clr-font-light: rgb(0, 0, 0);
+
+  $clr-bcg-dark: rgb(70, 44, 2);
+  $clr-font-dark: rgb(253, 253, 253);
+
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+}
+
+@mixin content($color-default, $color-main) {
+  body{
+    background-color: $color-default;
+    color: $color-main;
+    width: calc(100vw - (100vw - 100%));
+    min-height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    a{
+      text-decoration: none;
+      color: $color-main;
+    }
+    li{
+      list-style-type: none;
+    }
+  }
+}
+
+.light-theme {
+  @include content($clr-bcg-lignt, $clr-font-light);
+}
+
+.dark-theme {
+  @include content($clr-bcg-dark, $clr-font-dark);
+}
