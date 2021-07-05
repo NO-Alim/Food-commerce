@@ -80,7 +80,7 @@ const toggleCartDrawer = () => {
                     </div>
                     <div className="logo-container">
                         <div className="logo">
-                            <h1>ncare</h1>
+                            <h1>FoodCare</h1>
                         </div>
                     </div>
                     <div className="cart-menu">

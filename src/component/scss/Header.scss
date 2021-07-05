@@ -1,0 +1,89 @@
+
+
+$clr-bcg-lignt: rgb(255, 190, 106);
+$clr-font-light: rgb(0, 0, 0);
+
+$clr-bcg-dark: rgb(70, 44, 2);
+$clr-font-dark: rgb(253, 253, 253);
+
+
+$padding-margin-ex-lg: 150px;
+$padding-margin-lg: 100px;
+$padding-margin-md: 70px;
+$padding-margin-sm: 50px;
+$padding-margin-ex-sm: 20px;
+
+$transition: all 0.3s ease-in-out;
+//query
+$large: 1100px;
+$ex-medium: 900px;
+$medium: 768px;
+$small: 550px;
+$extraSmall: 450px;
+
+$heading: 70px;
+$heading-sm: 50px;
+$h1: 35px;
+$h2: 30px;
+$h3: 25px;
+$h4: 20px;
+$font-base: 16px;
+$font-base-lg: 18px;
+
+
+@mixin content($color-default, $color-main) {
+    .header{
+        background-color: red;
+        position: relative;
+
+        .carousel-item{
+            max-height: 80vh;
+            position: relative;
+            img{
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            .carousel-content{
+                background-color: rgba(189, 189, 189, 0.5);
+                position: absolute;
+                top: 50%;
+                left: $padding-margin-md;
+                transform: translateY(-50%);
+                width: 50%;
+                text-align: left;
+                font-family: Arial, Helvetica, sans-serif;
+                padding: $padding-margin-sm;
+                h3{
+                    font-size: $h3;
+                    margin-bottom: $padding-margin-ex-sm;
+                }
+                h2{
+                    font-size: $h1;
+                    margin-bottom: $padding-margin-ex-sm;
+                }
+            }
+        }
+        .arrow{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: transparent;
+            font-size: $h2;
+            color: #fff;
+            border: none;
+            outline: none;
+        }
+    }
+}
+
+  
+.light-theme {
+    @include content($clr-bcg-lignt, $clr-font-light);
+  }
+  
+  .dark-theme {
+    @include content($clr-bcg-dark, $clr-font-dark);
+  }

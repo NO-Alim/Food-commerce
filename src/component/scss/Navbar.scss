@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Festive&family=Roboto&family=Tangerine:wght@700&display=swap');
 
 
 $clr-bcg-lignt: rgb(255, 190, 106);
@@ -12,7 +12,7 @@ $padding-margin-ex-lg: 150px;
 $padding-margin-lg: 100px;
 $padding-margin-md: 70px;
 $padding-margin-sm: 50px;
-$padding-margin-ex-sm: 30px;
+$padding-margin-ex-sm: 20px;
 
 $transition: all 0.3s ease-in-out;
 //query
@@ -35,6 +35,10 @@ $font-base-lg: 18px;
 @mixin content($color-default, $color-main) {
     nav{
         padding: 20px $padding-margin-md;
+        background-color: $color-default;
+        box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+        -webkit-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+        -moz-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
         @media (max-width: $extraSmall) {
           padding: 10px $padding-margin-ex-sm;
         }
@@ -66,7 +70,13 @@ $font-base-lg: 18px;
             }
             h1{
               color: #fff;
-              font-size: $h2;
+              font-size: $heading-sm;
+              cursor: pointer;
+              font-family: 'Tangerine', cursive;
+              font-weight: 700;
+              @media (max-width: $small) {
+                font-size: $h1;
+              }
             }
           }
           .cart-menu{
@@ -100,6 +110,9 @@ $font-base-lg: 18px;
                 @media (max-width: $ex-medium) {
                   margin-right: 20px;
                 }
+                @media (max-width: $small) {
+                  margin-right: 10px;
+                }
                 span{
                   font-size: $font-base-lg;
                   @media (max-width: $ex-medium) {
@@ -112,10 +125,16 @@ $font-base-lg: 18px;
                 @media (max-width: $ex-medium) {
                   margin-right: 20px;
                 }
+                @media (max-width: $small) {
+                  margin-right: 10px;
+                }
                 span{
                   font-size: $h3;
                   z-index: 1;
                   cursor: pointer;
+                  @media (max-width: $small) {
+                    font-size: $h4;
+                  }
                 }
                 .item-total{
                   position: absolute;
