@@ -6,6 +6,7 @@ import {FiMenu,FiShoppingCart,FiSearch} from 'react-icons/fi'
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from '@material-ui/core/styles';
 import './scss/Navbar.scss'
+import Headroom from 'react-headroom'
 
 
 const img = 'https://cdn.shopify.com/s/files/1/0162/3932/9344/files/logo-white_160x.png?v=1547879955'
@@ -68,6 +69,7 @@ const toggleCartDrawer = () => {
 
     return (
         <div>
+            <Headroom >
             <nav>
                 <div className="nav-container">
                     <div className="link-container">
@@ -111,6 +113,7 @@ const toggleCartDrawer = () => {
                     </div>
                 </div>
             </nav>
+            </Headroom>
             <Drawer className={classes.list}
             palette="secondary"
             variant="persistent"

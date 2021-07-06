@@ -33,7 +33,6 @@ $font-base-lg: 18px;
 
 @mixin content($color-default, $color-main) {
     .header{
-        background-color: red;
         position: relative;
 
         .carousel-item{
@@ -51,10 +50,24 @@ $font-base-lg: 18px;
                 top: 50%;
                 left: $padding-margin-md;
                 transform: translateY(-50%);
-                width: 50%;
+                width: 700px;
                 text-align: left;
                 font-family: Arial, Helvetica, sans-serif;
                 padding: $padding-margin-sm;
+                border-radius: 10px;
+                overflow: hidden;
+                color: #000;
+                @media (max-width: $ex-medium) {
+                    width: 100%;
+                    height: 100%;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    border-radius: 0;
+                  }
+                  @media (max-width: $small) {
+                    display: none;
+                  }
                 h3{
                     font-size: $h3;
                     margin-bottom: $padding-margin-ex-sm;
@@ -62,6 +75,33 @@ $font-base-lg: 18px;
                 h2{
                     font-size: $h1;
                     margin-bottom: $padding-margin-ex-sm;
+                }
+                p{
+                   margin-bottom: $padding-margin-ex-sm;
+                }
+
+                button{
+                    width: 130px;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: $font-base-lg;
+                    font-weight: bold;
+                    border: 2px solid #000;
+                    border-radius: 30px;
+                    color: #000;
+                    background-color: transparent;
+                    transition: $transition;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: $color-default;
+                        border-color: $color-default;
+                    }
+                    &:focus{
+                        outline: none;
+                    }
                 }
             }
         }
@@ -75,7 +115,53 @@ $font-base-lg: 18px;
             color: #fff;
             border: none;
             outline: none;
+            position: relative;
+            z-index: 2;
+            @media (max-width: $small) {
+                font-size: $h4;
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-color: rgba($color: #000000, $alpha: 0.2);
+                border-radius: 50%;
+                transform: scale(0);
+                transition: $transition;
+                opacity: 0;
+            }
+            &:hover{
+                &::after{
+                    transform: scale(1.6);
+                    opacity: 1;
+                    @media (max-width: $small) {
+                        transform: scale(1.2);
+                    }
+                }
+            }
         }
+        .indicator{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 10px;
+            background-color: transparent;
+            border: 1px solid $color-main;
+            transition: $transition;
+            z-index: 1;
+            &.active{
+                background-color: $color-default;
+                transition: $transition;
+                transform: scale(1.5);
+            }
+        }
+    }
+    .carousel{
+        z-index: 0;
     }
 }
 
