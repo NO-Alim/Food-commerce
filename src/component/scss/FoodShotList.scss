@@ -57,12 +57,58 @@ $font-base-lg: 18px;
                     box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
                     -webkit-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
                     -moz-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+
+                    img{
+                        transform: scale(1.2);
+                    }
                 }
-                img{
-                    display: block;
-                    width: 50%;
-                    margin: 0 auto;
-                    border-radius: 50%
+                .img-container{
+                    border-top-right-radius: 30px;
+                    border-top-left-radius: 30px;
+                    overflow: hidden;
+                    img{
+                        display: block;
+                        width: 100%;
+                        margin: 0 auto;
+                        border-top-right-radius: 30px;
+                        border-top-left-radius: 30px;
+                        cursor: pointer;
+                        transition: $transition;
+                    }
+                }
+                .card-content{
+                    border-bottom-left-radius: 30px;
+                    border-bottom-right-radius: 30px;
+                    padding: 20px;
+                    p{
+                        font-family: Arial, Helvetica, sans-serif;
+                        margin-bottom: 10px;
+                    }
+                    .price{
+                        color: $color-main;
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: $font-base-lg;
+                        font-weight: bold;
+                    }
+                    button{
+                        width: 130px;
+                        height: 40px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: $font-base-lg;
+                        background-color: transparent;
+                        border: 1px solid $color-default;
+                        border-radius: 30px;
+                        margin: 0 auto;
+                        margin-top: 10px;
+                        transition: $transition;
+                        color: $color-main;
+                        cursor: pointer;
+                        &:hover{
+                            background-color: $color-default;
+                        }
+                    }
                 }
             }
         }

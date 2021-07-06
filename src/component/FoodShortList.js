@@ -68,10 +68,16 @@ const FoodShortList = () => {
                     return(
                         <div className="single-silk" key={ind}>
                             <div className="silck-card">
-                                <img src={item.image}/>
+                                <div className="img-container">
+                                  <img src={item.image}/>
+                                </div>
                                 <div className="card-content">
                                     <p>{ind}:{item.name}</p>
-                                    <span className="price">{item.id}</span>
+                                    <span className="price">${item.id.substring(0,3)}</span>
+                                    <div className="btn-group">
+                                      <button>add cart</button>
+                                    </div>
+                        
                                 </div>
                             </div>
                         </div>
