@@ -2,6 +2,7 @@ import React from 'react'
 import './scss/FoodShotList.scss'
 import Slider from "react-slick";
 import { useGlobalContext } from '../context';
+import {FiShoppingBag} from 'react-icons/fi'
 
 const FoodShortList = () => {
     const {product} = useGlobalContext();
@@ -45,6 +46,13 @@ const FoodShortList = () => {
             }
           },
           {
+            breakpoint: 850,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+            }
+          },
+          {
             breakpoint: 600,
             settings: {
                 slidesToShow: 2,
@@ -62,6 +70,7 @@ const FoodShortList = () => {
       };
     return (
         <div className="foodShortList-container">
+          <h1>FEATURED PRODUCT</h1>
             <div className="foodShortList">
             <Slider {...settings}>
                 {product.map((item,ind) =>{
@@ -72,10 +81,10 @@ const FoodShortList = () => {
                                   <img src={item.image}/>
                                 </div>
                                 <div className="card-content">
-                                    <p>{ind}:{item.name}</p>
+                                    <p>{ind + 1}:{item.name}</p>
                                     <span className="price">${item.id.substring(0,3)}</span>
                                     <div className="btn-group">
-                                      <button>add cart</button>
+                                      <button><FiShoppingBag /></button>
                                     </div>
                         
                                 </div>
