@@ -7,7 +7,6 @@ import {FaHeart} from 'react-icons/fa'
 const Blog = () => {
     const {product} = useGlobalContext();
     const blogList = product.slice(0,3)
-    console.log(blogList);
     return (
         <div className="blog-container">
             <div className="blog">

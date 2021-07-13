@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 import { useGlobalContext } from '../context'
 import './scss/Categoris.scss'
 
@@ -9,6 +10,8 @@ const Categoris = () => {
         return [...new Map(arr.map(item => [item[key],item])).values()];
     }
     const category = getUniqList(product,'category');
+
+    const lacation = useHistory();
     return (
         <div className="category-container">
             <div className="category">
@@ -17,7 +20,7 @@ const Categoris = () => {
                 <div className="category-cards">
                 {category.map((item,ind) =>{
                     return(
-                        <article key={ind}>
+                        <article key={ind} onClick={() => lacation.push(`/products/${item.category}`)}>
                             <img src={item.image}/>
                             <span></span>
                             <strong>{item.category}</strong>

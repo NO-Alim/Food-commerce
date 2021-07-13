@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Festive&family=Roboto&family=Tangerine:wght@700&display=swap');
+
+$clr-bcg-lignt: rgb(255, 190, 106);
+$clr-font-light: rgb(0, 0, 0);
+$clr-card-back-light: rgb(241, 241, 241);
+
+$clr-bcg-dark: rgb(70, 44, 2);
+$clr-font-dark: rgb(253, 253, 253);
+$clr-card-back-dark: rgb(129, 129, 129);
+
+
+$padding-margin-ex-lg: 150px;
+$padding-margin-lg: 100px;
+$padding-margin-md: 70px;
+$padding-margin-sm: 50px;
+$padding-margin-ex-sm: 20px;
+
+$transition: all 0.3s ease-in-out;
+//query
+$large: 1100px;
+$ex-medium: 900px;
+$medium: 768px;
+$small: 550px;
+$extraSmall: 450px;
+
+$heading: 70px;
+$heading-sm: 50px;
+$h1: 35px;
+$h2: 30px;
+$h3: 25px;
+$h4: 20px;
+$font-base: 16px;
+$font-base-lg: 18px;
+
+
+@mixin content($color-default, $color-main, $color-card) {
+    .loader-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: $padding-margin-md;
+        @media (max-width: $extraSmall) {
+            padding: $padding-margin-md $padding-margin-ex-sm;
+            padding-bottom: $padding-margin-ex-sm;
+        }
+
+        
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #fff;
+            width: 100px;
+            height: 100px;
+            background-color: transparent;
+            border: 2px solid $color-card;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .container::after{
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: transparent;
+            border: 2px solid $color-card;
+            border-radius: 50%;
+            animation: animation1 1000ms linear infinite;
+        }
+
+
+        @keyframes animation1{
+            form{
+                width: 100px;
+                height: 100px;
+                border-color: $color-card;
+            }
+
+            to{
+                width: 200px;
+                height: 200px;
+                border-color: transparent;
+            }
+        }
+    }
+}
+
+
+.light-theme {
+    @include content($clr-bcg-lignt, $clr-font-light,$clr-card-back-light);
+  }
+  
+  .dark-theme {
+    @include content($clr-bcg-dark, $clr-font-dark,$clr-card-back-dark);
+}
