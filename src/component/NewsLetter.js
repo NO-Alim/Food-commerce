@@ -42,7 +42,7 @@ const NewsLetter = () => {
                                 <span><GiReceiveMoney /></span>
                             </div>
                             <div className="service-content">
-                                <h4>Free Delivery</h4>
+                                <h4>Money Guarantee</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, placeat incidunt dolorem exercitationem eos maxime?</p>
                             </div>
                         </div>
@@ -51,7 +51,7 @@ const NewsLetter = () => {
                                 <span><BiSupport /></span>
                             </div>
                             <div className="service-content">
-                                <h4>Free Delivery</h4>
+                                <h4>Online Support</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente, placeat incidunt dolorem exercitationem eos maxime?</p>
                             </div>
                         </div>

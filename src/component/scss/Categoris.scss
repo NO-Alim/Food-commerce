@@ -42,9 +42,8 @@ $font-base-lg: 18px;
         .category{
             .category-title{
                 font-size: $h1;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                display: block;
+                text-align: center;
                 margin-bottom: $padding-margin-ex-sm;
             }
             p{
@@ -139,6 +138,7 @@ $font-base-lg: 18px;
                         margin-top: $padding-margin-ex-sm;
                         font-size: $h4;
                         text-align: center;
+                        font-family: Arial, Helvetica, sans-serif;
                         @media (max-width: $medium) {
                             font-size: $font-base;
                         }

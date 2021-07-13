@@ -48,7 +48,7 @@ $font-base-lg: 18px;
           align-items: center;
           justify-content: space-between;
           .link-container{
-            flex: 1;
+            flex: 1.5;
             @media (max-width: $ex-medium) {
               display: none;
             }
@@ -85,29 +85,16 @@ $font-base-lg: 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            .search-container{
-              flex: 1;
-              text-align: center;
-              @media (max-width: $ex-medium) {
-                display: none;
-              }
-              span{
-                font-size: $font-base-lg;
-                cursor: pointer;
-              }
-              form{
-                display: none;
-              }
-            }
             .cart-container{
               flex: 1;
               display: flex;
               align-items: center;
-              justify-content: space-between;
+              justify-content: flex-end;
               @media (max-width: $ex-medium) {
                 justify-content: flex-end;
               }
               .dark-mood{
+                margin-right: 20px;
                 @media (max-width: $ex-medium) {
                   margin-right: 20px;
                 }
@@ -123,6 +110,7 @@ $font-base-lg: 18px;
               }
               .cart-icon{
                 position: relative;
+                margin-right: 20px;
                 @media (max-width: $ex-medium) {
                   margin-right: 20px;
                 }

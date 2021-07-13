@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Festive&family=Roboto&family=Tangerine:wght@700&display=swap');
+
+$clr-bcg-lignt: rgb(255, 190, 106);
+$clr-font-light: rgb(0, 0, 0);
+$clr-card-back-light: rgb(241, 241, 241);
+
+$clr-bcg-dark: rgb(70, 44, 2);
+$clr-font-dark: rgb(253, 253, 253);
+$clr-card-back-dark: rgb(129, 129, 129);
+
+
+$padding-margin-ex-lg: 150px;
+$padding-margin-lg: 100px;
+$padding-margin-md: 70px;
+$padding-margin-sm: 50px;
+$padding-margin-ex-sm: 20px;
+
+$transition: all 0.3s ease-in-out;
+//query
+$large: 1100px;
+$ex-medium: 900px;
+$medium: 768px;
+$small: 550px;
+$extraSmall: 450px;
+
+$heading: 70px;
+$heading-sm: 50px;
+$h1: 35px;
+$h2: 30px;
+$h3: 25px;
+$h4: 20px;
+$font-base: 16px;
+$font-base-lg: 18px;
+
+
+@mixin content($color-default, $color-main, $color-card) {
+    .footer-container{
+        padding: $padding-margin-md;
+        padding-bottom: $padding-margin-ex-sm;
+        @media (max-width: $extraSmall) {
+            padding: $padding-margin-md $padding-margin-ex-sm;
+            padding-bottom: $padding-margin-ex-sm;
+        }
+        footer{
+            display: flex;
+            justify-content: space-between;
+            font-family: Arial, Helvetica, sans-serif;
+
+            .footer-contact{
+                flex: 2;
+                padding-right: 30px;
+                @media (max-width: $medium) {
+                    text-align: center;
+                    padding-right: 0;
+                }
+
+                h1{
+                    color: #fff;
+                    font-size: $heading-sm;
+                    cursor: pointer;
+                    font-family: 'Tangerine', cursive;
+                    font-weight: 700;
+                    @media (max-width: $small) {
+                        font-size: $h1;
+                    }
+                }
+                p{
+                    margin-bottom: 10px;
+
+                    span{
+                        color: $color-card;
+                        min-width: 30px;
+                        display: inline-block;
+                    }
+                }
+            }
+
+            .footer-links{
+                flex: 1;
+                @media (max-width: $medium) {
+                    display: none;
+                }
+            }
+
+            .footer-heading{
+                min-height: 50px;
+                margin-bottom: 10px;
+            }
+
+            ul{
+                li{
+                    a{
+                        display: inline-block;
+                        margin-bottom: 10px;
+                        transition: $transition;
+
+                        &:hover{
+                            margin-left: 10px;
+                            color: $color-card
+                        }
+                    }
+                }
+            }
+        }
+        .copy-right{
+            display: block;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            margin-top: $padding-margin-sm;
+
+            span{
+                color: $color-card;
+            }
+        }
+    }
+}
+
+
+.light-theme {
+    @include content($clr-bcg-lignt, $clr-font-light,$clr-card-back-light);
+  }
+  
+  .dark-theme {
+    @include content($clr-bcg-dark, $clr-font-dark,$clr-card-back-dark);
+}

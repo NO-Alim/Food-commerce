@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Festive&family=Roboto&family=Tangerine:wght@700&display=swap');
+
+$clr-bcg-lignt: rgb(255, 190, 106);
+$clr-font-light: rgb(0, 0, 0);
+$clr-card-back-light: rgb(241, 241, 241);
+
+$clr-bcg-dark: rgb(70, 44, 2);
+$clr-font-dark: rgb(253, 253, 253);
+$clr-card-back-dark: rgb(129, 129, 129);
+
+
+$padding-margin-ex-lg: 150px;
+$padding-margin-lg: 100px;
+$padding-margin-md: 70px;
+$padding-margin-sm: 50px;
+$padding-margin-ex-sm: 20px;
+
+$transition: all 0.3s ease-in-out;
+//query
+$large: 1100px;
+$ex-medium: 900px;
+$medium: 768px;
+$small: 550px;
+$extraSmall: 450px;
+
+$heading: 70px;
+$heading-sm: 50px;
+$h1: 35px;
+$h2: 30px;
+$h3: 25px;
+$h4: 20px;
+$font-base: 16px;
+$font-base-lg: 18px;
+
+
+@mixin content($color-default, $color-main, $color-card) {
+  
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: $padding-margin-ex-sm 0;
+  z-index: 0;
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  //200px  
+}
+
+.slider__track,
+.slider__range,
+.slider__left-value,
+.slider__right-value {
+  position: absolute;
+}
+
+.slider__track,
+.slider__range {
+  border-radius: 3px;
+  height: 5px;
+}
+
+.slider__track {
+  background-color: $color-card;
+  width: 100%;
+  z-index: 1;
+}
+
+.slider__range {
+  background-color: $color-main;
+  z-index: 2;
+}
+
+.slider__left-value,
+.slider__right-value {
+  color: $color-main;
+  font-size: $font-base;
+  margin-top: $padding-margin-ex-sm;
+}
+
+.slider__left-value {
+  left: 5px;
+}
+
+.slider__right-value {
+  right: 5px;
+}
+
+/* Removing the default appearance */
+.thumb,
+.thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.thumb {
+  pointer-events: none;
+  position: absolute;
+  height: 0;
+  //width: 200px;
+  width: 100%;
+  outline: none;
+}
+
+.thumb--left {
+  z-index: 3;
+}
+
+.thumb--right {
+  z-index: 4;
+}
+
+/* For Chrome browsers */
+.thumb::-webkit-slider-thumb {
+  background-color: $color-main;
+  border: none;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+
+/* For Firefox browsers */
+.thumb::-moz-range-thumb {
+  background-color: $color-main;
+  border: none;
+  border-radius: 50%;
+  box-shadow: none;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+}
+
+
+.light-theme {
+  @include content($clr-bcg-lignt, $clr-font-light,$clr-card-back-light);
+}
+
+.dark-theme {
+  @include content($clr-bcg-dark, $clr-font-dark,$clr-card-back-dark);
+}

@@ -74,10 +74,11 @@ const toggleCartDrawer = () => {
                 <div className="nav-container">
                     <div className="link-container">
                         <ul>
-                            <li><NavLink to="#">Home</NavLink></li>
-                            <li><NavLink to="#">shop</NavLink></li>
-                            <li><NavLink to="#">product</NavLink></li>
-                            <li><NavLink to="#">contact</NavLink></li>
+                            <li><NavLink to="/">Home</NavLink></li>
+                            <li><NavLink to="/shop">shop</NavLink></li>
+                            <li><NavLink to="/campaigns">campaigns</NavLink></li>
+                            <li><NavLink to="/sell">sell</NavLink></li>
+                            <li><NavLink to="/contact">contact</NavLink></li>
                         </ul>
                     </div>
                     <div className="logo-container">
@@ -86,18 +87,9 @@ const toggleCartDrawer = () => {
                         </div>
                     </div>
                     <div className="cart-menu">
-                        <div className="search-container">
-                            <div className="search-btn">
-                                <span><FiSearch/></span>
-                            </div>
-                            <form>
-                                <input type="text" placeholder="search"/>
-                                <input type="submit" />
-                            </form>
-                        </div>
                         <div className="cart-container">
                             <div className="dark-mood">
-                            <span onClick={() => toggleTheme()}>{theme === "light-theme" ? <FaMoon />: <FaSun />}</span>
+                                <span onClick={() => toggleTheme()}>{theme === "light-theme" ? <FaMoon />: <FaSun />}</span>
                             </div>
                             <div className="cart-icon">
                                 <span onClick={() => toggleCartDrawer()}><FiShoppingCart/></span>

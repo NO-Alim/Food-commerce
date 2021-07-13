@@ -61,23 +61,78 @@ $font-base-lg: 18px;
             .single-blog{
                 background-color: rgba($color-card, $alpha: 0.6);
                 border: 1px solid $color-card;
-                border-radius: 30px;
+                border-radius: 5px;
                 overflow: hidden;
                 transition: $transition;
-                cursor: pointer;
+
                 &:hover{
                     background-color: $color-card;
                     box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
                     -webkit-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
                     -moz-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
-                    img{
-                        transform: scale(1.2);
+                }
+
+                .top-content{
+                    flex: 4;
+
+                    h3{
+                        margin-bottom: 10px;
+                    }
+                }
+
+                .menu{
+                    flex: 1;
+                }
+
+                .blog-top-content{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 20px 0;
+                    text-align: left;
+                    .avatar{
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        .avatar-icon{
+                            width: 40px;
+                            height: 40px;
+                            background-color: $color-default;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 50%;
+                            font-size: 22px;
+                            transition: $transition;
+                        }
+                    }
+
+                    .menu{
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        span{
+                            width: 40px;
+                            height: 40px;
+                            background-color: transparent;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 50%;
+                            transition: $transition;
+                            &:hover{
+                                background: rgba($color-default, $alpha: 0.7);
+                            }
+                        }
                     }
                 }
                 .img-container{
                     overflow: hidden;
                     margin-bottom: $padding-margin-ex-sm;
                     transition: $transition;
+                    max-height: 300px;
                     img{
                         display: block;
                         width: 100%;
@@ -86,43 +141,67 @@ $font-base-lg: 18px;
                     }
                 }
                 .blog-content{
-                    padding: 0 $padding-margin-ex-sm;
-                    .posted-by{
-                        margin: 10px 0;
-                        font-size: 13px;
-                        font-weight: bold;
-                        span{
-                            color: $color-default;
-                            font-size: $font-base;
-                        }
-                    }
+                    padding: 20px;
+                    padding-top: 0;
+                    text-align: left;
+
                     .post{
-                        margin-bottom: $padding-margin-ex-sm;
+                        line-height: 22px;
+                        display: inline-block;
+                    }
+
+                    .card-action{
+                        margin: 20px 0;
+                        display: flex;
+                        justify-content: space-between;
+
+                        .left{
+                            span{
+                                font-size: 22px;
+                                margin-right: 10px;
+                                cursor: pointer;
+                                transition: $transition;
+                                &:hover{
+                                    color: $color-default;
+                                }
+                            }
+                        }
+
+                        .read-more{
+                            font-weight: bold;
+                            cursor: pointer;
+                            display: inline-block;
+                            padding: 5px;
+                            background: $color-default;
+                            border-radius: 5px;
+                            cursor: pointer;
+                        }
                     }
                 }
             }
         }
-
         button{
-            margin: 0 auto;
-            margin-top: $padding-margin-md;
-            padding: 0 20px;
+            width: 140px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 0 auto;
+            margin-top: $padding-margin-sm;
             font-size: $font-base-lg;
-            background-color: rgba($color-card, $alpha: 0.6);
-            border: 1px solid $color-card;
+            border: none;
             border-radius: 30px;
-            transition: $transition;
-            color: $color-main;
+            background-color: rgba($color-card, $alpha: 0.6);
             cursor: pointer;
+            transition: $transition;
             &:hover{
-                background-color: $color-card;
                 box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
                 -webkit-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
                 -moz-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+                background-color: $color-card;
+            }
+            &:focus{
+                outline: none;
             }
         }
     }

@@ -1,7 +1,13 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import Footer from './component/Footer';
 import Navbar from './component/Navbar';
+import Campaigns from './page/Campaigns';
+import Contact from './page/Contact';
 import Home from './page/Home'
+import Sell from './page/Sell';
+import Shop from './page/Shop';
+import Error from './page/Error'
 
 
 
@@ -16,7 +22,23 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
+        <Route exact path="/shop">
+          <Shop />
+        </Route>
+        <Route exact path="/campaigns">
+          <Campaigns />
+        </Route>
+        <Route exact path="/sell">
+          <Sell />
+        </Route>
+        <Route exact path="/contact">
+          <Contact />
+        </Route>
+        <Route exact path="*">
+          <Error />
+        </Route>
       </Switch>
+      <Footer />
     </Router>
     </div>
   );
