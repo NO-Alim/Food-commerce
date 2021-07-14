@@ -4,18 +4,20 @@ import {FiSearch} from 'react-icons/fi'
 import { useEffect } from 'react';
 import { useGlobalContext } from '../context';
 import {FiShoppingBag} from 'react-icons/fi'
+import { useHistory } from 'react-router-dom';
 
 const SearchSection = () => {
     const {product} = useGlobalContext();
     const [searchText, setSearchText] = useState('');
     const [result, setResult] = useState([]);
     const [noResult, setNoResult] = useState(true);
+    const location = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setSearchText('')
         if (searchText) {
-            var xyz = product.filter(item => item.category.toLowerCase().includes(searchText.toLowerCase()) || item.name.toLowerCase().includes(searchText.toLowerCase()));
+            var xyz = product.filter(item => item.category.toLowerCase().includes(searchText.toLowerCase()) || item.name.toLowerCase().includes(searchText.toLowerCase()) || item.info.toLowerCase().includes(searchText.toLowerCase()));
             setResult(xyz)
             setNoResult(false);
         } else{
@@ -23,16 +25,16 @@ const SearchSection = () => {
             setNoResult(true);
         }
     }
-    useEffect(() =>{
-        // if (searchText) {
-        //     var xyz = product.filter(item => item.category.toLowerCase().includes(searchText.toLowerCase()) || item.name.toLowerCase().includes(searchText.toLowerCase()));
-        //     setResult(xyz)
-        //     setNoResult(false);
-        // } else{
-        //     setResult([])
-        //     setNoResult(true);
-        // }
-    },[searchText])
+    // useEffect(() =>{
+    //     // if (searchText) {
+    //     //     var xyz = product.filter(item => item.category.toLowerCase().includes(searchText.toLowerCase()) || item.name.toLowerCase().includes(searchText.toLowerCase()));
+    //     //     setResult(xyz)
+    //     //     setNoResult(false);
+    //     // } else{
+    //     //     setResult([])
+    //     //     setNoResult(true);
+    //     // }
+    // },[searchText])
 
 
     return (
@@ -50,11 +52,11 @@ const SearchSection = () => {
                         return(
                             <article key={item.id}>
                                 <div className="card">
-                                    <div className="img-container">
+                                    <div className="img-container"  onClick={() => location.push(`/product/${item.id}`)}>
                                     <img src={item.image}/>
                                     </div>
                                     <div className="card-content">
-                                        <p>{item.name}</p>
+                                        <p style={{cursor: 'pointer'}}  onClick={() => location.push(`/product/${item.id}`)}>{item.name}</p>
                                         <p className="dis">{item.IntroOne.substring(0,20)}.</p>
                                         <span className="price">${item.id.substring(0,3)}</span>
                                         <div className="btn-group">

@@ -37,7 +37,8 @@ const AppProvider = ({children}) => {
                       category: strCategory,
                       IntroOne:strInstructions,
                       Introtwo: strInstructionsDE,
-                      IntroThree: strInstructionsIT
+                      IntroThree: strInstructionsIT,
+                      price: idDrink.slice(0,3)
                     }
                   })
                 setProduct(newProduct);

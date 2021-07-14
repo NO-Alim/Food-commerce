@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Festive&family=Roboto&family=Tangerine:wght@700&display=swap');
+
+$clr-bcg-lignt: rgb(255, 190, 106);
+$clr-font-light: rgb(0, 0, 0);
+$clr-card-back-light: rgb(241, 241, 241);
+
+$clr-bcg-dark: rgb(70, 44, 2);
+$clr-font-dark: rgb(253, 253, 253);
+$clr-card-back-dark: rgb(129, 129, 129);
+
+
+$padding-margin-ex-lg: 150px;
+$padding-margin-lg: 100px;
+$padding-margin-md: 70px;
+$padding-margin-sm: 50px;
+$padding-margin-ex-sm: 20px;
+
+$transition: all 0.3s ease-in-out;
+//query
+$large: 1100px;
+$ex-medium: 900px;
+$medium: 768px;
+$small: 550px;
+$extraSmall: 450px;
+
+$heading: 70px;
+$heading-sm: 50px;
+$h1: 35px;
+$h2: 30px;
+$h3: 25px;
+$h4: 20px;
+$font-base: 16px;
+$font-base-lg: 18px;
+
+
+@mixin content($color-default, $color-main, $color-card) {
+    .singleProduct-container{
+        padding: $padding-margin-md;
+        padding-bottom: $padding-margin-ex-sm;
+        font-family: Arial, Helvetica, sans-serif;
+        @media (max-width: $extraSmall) {
+            padding: $padding-margin-md $padding-margin-ex-sm;
+            padding-bottom: $padding-margin-ex-sm;
+        }
+
+        .singleProduct-content{
+            display: flex;
+            flex-direction: column;
+            .preduct-sec{
+                display: flex;
+                flex-direction: column;
+
+                .top-container{
+                    margin-bottom: $padding-margin-ex-sm;
+                    text-align: left;
+
+                    a{
+                        font-weight: bold;
+
+                        &.disabled-link{
+                            font-weight: lighter;
+                        }
+                    }
+                }
+
+                .bottom-container{
+                    display: flex;
+                    @media (max-width: $medium) {
+                        flex-direction: column;
+                    }
+                    .img-container{
+                        flex: 1;
+                        @media (max-width: $medium) {
+                            margin-bottom: $padding-margin-sm;
+                        }
+                        img{
+                            display: block;
+                            width: 100%;
+                        }
+                    }
+                    .product-description{
+                        flex: 2;
+
+                        .description-content{
+                            padding-left: $padding-margin-ex-sm;
+                            @media (max-width: $medium) {
+                                padding: 0;
+                            }
+                            h2{
+                                font-size: $h2;
+                                letter-spacing: 2px;
+                                margin-bottom: $padding-margin-ex-sm;
+                                font-weight: 600;
+                            }
+                            h3{
+                                font-size: $h3;
+                                margin-bottom: 10px;
+                                color: $color-card;
+                            }
+                            h4{
+                                font-size: $h4;
+                                margin-bottom: $padding-margin-ex-sm;
+                                color: $color-card;
+                            }
+                            .para-sec{
+                                margin-bottom: $padding-margin-ex-sm;
+                                p{
+                                    margin-bottom: 10px;
+                                    font-size: $font-base;
+                                    letter-spacing: 0.8px;
+                                }
+                            }
+
+                            .glass,.info,.category{
+                                margin-bottom: 5px;
+                                span{
+                                    font-size: $font-base-lg;
+                                    font-weight: bold;
+                                    margin-right: 5px;
+                                }
+                            }
+
+                            .customer-sec{
+                                margin-top: $padding-margin-ex-sm;
+                                display: flex;
+                                .quantity{
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: flex-start;
+                                    background-color: rgba($color-card, $alpha: 0.3);
+                                    width: 50px;
+                                    height: 40px;
+                                    margin-right: 10px;
+                                    position: relative;
+                                    padding-left: 10px;
+                                    &:hover{
+                                        .top,.bottom{
+                                            display: block;
+                                        }
+                                    }
+                                    
+
+                                    .top{
+                                        position: absolute;
+                                        width: 10px;
+                                        height: 10px;
+                                        right: 5px;
+                                        top: 5px;
+                                        border-left: 1px solid $color-card;
+                                        border-bottom: 1px solid $color-card;
+                                        transform: rotate(135deg);
+                                        cursor: pointer;
+                                        display: none;
+                                        transition: $transition;
+                                        &:hover{
+                                            border-width: 2px;
+                                        }
+                                    }
+                                    .bottom{
+                                        position: absolute;
+                                        width: 10px;
+                                        height: 10px;
+                                        right: 5px;
+                                        bottom: 5px;
+                                        border-left: 1px solid $color-card;
+                                        border-bottom: 1px solid $color-card;
+                                        transform: rotate(-45deg);
+                                        cursor: pointer;
+                                        display: none;
+                                        transition: $transition;
+                                        &:hover{
+                                            border-width: 2px;
+                                        }
+                                        
+                                    }
+                                }
+
+                                button{
+                                    width: 100px;
+                                    height: 40px;
+                                    background-color: rgba($color-card, $alpha: 0.5);
+                                    margin-right: $padding-margin-ex-sm;
+                                    font-size: $font-base;
+                                    font-weight: bold;
+                                    color: $color-main;
+                                    border: 1px solid $color-card;
+                                    border-radius: 30px;
+                                    transition: $transition;
+                                    cursor: pointer;
+                                    
+
+                                    &:hover{
+                                        background-color: $color-card;
+                                        box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+                                        -webkit-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+                                        -moz-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+                                    }
+
+                                    &:focus{
+                                        outline: none;
+                                    }
+                                    
+                                    @media (max-width: 400px) {
+                                        font-size: 15px;
+                                        font-weight: lighter;
+                                        margin-right: 5px;
+                                    }
+
+                                }
+
+                                .heart{
+                                    width: 40px;
+                                    height: 40px;
+                                    background-color: rgba($color-card, $alpha: 0.1);
+                                    margin-right: $padding-margin-ex-sm;
+                                    font-size: $h3;
+                                    font-weight: bold;
+                                    color: $color-main;
+                                    border: 1px solid $color-card;
+                                    border-radius: 50%;
+                                    transition: $transition;
+                                    cursor: pointer;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+
+                                    &:hover{
+                                        background-color: $color-card;
+                                        box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+                                        -webkit-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+                                        -moz-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+                                    }
+
+                                    @media (max-width: 400px) {
+                                        font-size: $h4;
+                                        border: none;
+                                        background: transparent;
+                                        
+                                        &:hover{
+                                            background-color: transparent;
+                                            box-shadow: none;
+                                            -webkit-box-shadow: none;
+                                            -moz-box-shadow: none;
+                                        }
+                                    }
+                                }
+                            }
+
+
+                        }
+                    }
+                }
+            }
+
+            .review-sec{
+                margin-top: $padding-margin-sm;
+                // .tabs{
+                //     // display: flex;
+                //     // flex-direction: column;
+                //     // @media (max-width: $medium) {
+                //     // flex-direction: row;
+                // }
+                // }
+                ul{
+                    border-bottom: 1px solid rgba($color-card, $alpha: 0.5);
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    @media (max-width: $medium) {
+                        flex-direction: column;
+                        border-bottom: none;
+                        align-items: flex-start;
+                    }
+
+                }
+                li{
+                    background-color: transparent;
+                    border-color: transparent;
+                    padding: 10px 20px;
+                    font-size: $h4;
+
+                    &.react-tabs__tab--selected{
+                        background-color: rgba($color-card, $alpha: 0.3);
+                        border-color: rgba($color-card, $alpha: 0.5);
+                    }
+
+                    @media (max-width: $medium) {
+                        border: none;
+                        border-radius: 10px;
+                    }
+                }
+
+                .tabs{
+                    p{
+                        margin-bottom: 10px;
+                    }
+                }
+                .policy{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    padding: 0;
+                    margin-top: $padding-margin-ex-sm;
+                    border: none;
+                    li{
+                        padding: 0;
+                        margin-bottom: 10px;
+                        font-size: $font-base;
+                        a{
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.light-theme {
+    @include content($clr-bcg-lignt, $clr-font-light,$clr-card-back-light);
+  }
+  
+  .dark-theme {
+    @include content($clr-bcg-dark, $clr-font-dark,$clr-card-back-dark);
+  }
+

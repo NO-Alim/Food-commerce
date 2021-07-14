@@ -9,6 +9,7 @@ import Sell from './page/Sell';
 import Shop from './page/Shop';
 import Error from './page/Error'
 import FilteredProduct from './page/FilteredProduct';
+import SingleProduct from './page/SingleProduct';
 
 
 
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route exact path="/products/:id">
           <FilteredProduct />
+        </Route>
+        <Route exact path="/product/:id">
+          <SingleProduct />
         </Route>
         <Route exact path="*">
           <Error />

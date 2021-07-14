@@ -19,8 +19,10 @@ const Categoris = () => {
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, ratione consequatur id pariatur tempore eaque ducimus placeat quos autem ipsa!</p>
                 <div className="category-cards">
                 {category.map((item,ind) =>{
+                    var cleanPath = item.category;
+                    cleanPath = cleanPath.replace("/", "")
                     return(
-                        <article key={ind} onClick={() => lacation.push(`/products/${item.category}`)}>
+                        <article key={ind} onClick={() => lacation.push(`/products/${cleanPath}`)}>
                             <img src={item.image}/>
                             <span></span>
                             <strong>{item.category}</strong>

@@ -5,6 +5,7 @@ import { useGlobalContext } from '../context'
 import {FiMinus,FiPlus,FiShoppingBag} from 'react-icons/fi'
 import Slider from 'react-slick'
 import Loader from '../component/Loader'
+import { useHistory } from 'react-router-dom'
 
 
 
@@ -14,6 +15,7 @@ const Shop = () => {
     const loadbuttonRef = useRef(null);
     const [slideAccordion, setSlideAccordion] = useState(true);
     const [searchAccordion, setSearchAccordion] = useState(true);
+    const location = useHistory();
 
     const [products, setProducts] = useState(product);
     // useEffect(() => {
@@ -75,11 +77,11 @@ const Shop = () => {
                             return(
                                 <article key={ind} key={item.id}>
                                     <div className="card">
-                                        <div className="img-container">
+                                        <div className="img-container" onClick={() => location.push(`/product/${item.id}`)}>
                                         <img src={item.image}/>
                                         </div>
                                         <div className="card-content">
-                                            <p>{item.name}</p>
+                                            <p style={{cursor: 'pointer'}} onClick={() => location.push(`/product/${item.id}`)}>{item.name}</p>
                                             <p className="dis">{item.IntroOne.substring(0,20)}.</p>
                                             <span className="price">${item.id.substring(0,3)}</span>
                                             <div className="btn-group">
