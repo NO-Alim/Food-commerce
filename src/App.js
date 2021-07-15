@@ -10,6 +10,7 @@ import Shop from './page/Shop';
 import Error from './page/Error'
 import FilteredProduct from './page/FilteredProduct';
 import SingleProduct from './page/SingleProduct';
+import ScrollToTopCopy from './ScrollToTop copy';
 
 
 
@@ -20,6 +21,7 @@ function App() {
     <div className="App">
       <Router>
       <Navbar />
+      <ScrollToTopCopy />
       <Switch>
         <Route exact path="/">
           <Home />

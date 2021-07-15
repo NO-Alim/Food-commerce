@@ -8,6 +8,15 @@ const AppProvider = ({children}) => {
     const [searchTerm, setSearchTerm] = useState('b');
     const [product, setProduct] = useState([]);
 
+    let minPrice = Math.min.apply(null, product.map(item => item.price));
+    let maxPrice = Math.max.apply(null, product.map(item => item.price));
+    const percentage = 0.35;
+    const [price, setPrice] = useState([
+            {minPrice: minPrice,
+            sellMinPrice:minPrice * (1 - (percentage )),
+            maxPrice: maxPrice,
+            sellMaxPrice: maxPrice * (1 - (percentage ))}
+    ]);
     const fetchProduct = useCallback( async () => {
         setLoading(true);
         try {
@@ -46,9 +55,15 @@ const AppProvider = ({children}) => {
                 setProduct([])
             }
             setLoading(false);
+            if (!localStorage.getItem('price')) {
+                localStorage.setItem("price", JSON.stringify(price))
+            }
         } catch (error) {
             console.log(error);
             setLoading(false)
+            if (!localStorage.getItem('price')) {
+                localStorage.setItem("price", JSON.stringify(price))
+            }
         }
     },[searchTerm])
 

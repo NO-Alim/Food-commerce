@@ -3,9 +3,11 @@
 
 $clr-bcg-lignt: rgb(255, 190, 106);
 $clr-font-light: rgb(0, 0, 0);
+$clr-card-back-light: rgb(241, 241, 241);
 
 $clr-bcg-dark: rgb(70, 44, 2);
 $clr-font-dark: rgb(253, 253, 253);
+$clr-card-back-dark: rgb(129, 129, 129);
 
 
 $padding-margin-ex-lg: 150px;
@@ -32,7 +34,7 @@ $font-base: 16px;
 $font-base-lg: 18px;
 
 
-@mixin content($color-default, $color-main) {
+@mixin content($color-default, $color-main, $color-card) {
     nav{
         padding: 20px $padding-margin-md;
         background-color: $color-default;
@@ -59,6 +61,9 @@ $font-base-lg: 18px;
                 a{
                   font-size: $font-base-lg;
                   font-weight: bold;
+                  &.active{
+                    color: red;
+                  }
                 }
               }
             }
@@ -167,13 +172,213 @@ $font-base-lg: 18px;
           }
         }
     }
+
+    .drawer-container{
+      min-width: 300px;
+      width: 100%;
+      height: 100%;
+      background-color: $color-default;
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: $color-main;
+
+      .close-btn{
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        background-color: rgba($color-card, $alpha: 0.4);
+        border: 1px solid $color-card;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: $transition;
+        font-weight: lighter;
+        cursor: pointer;
+        color: $color-main;
+        &:hover{
+          background: $color-card;
+          box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+          -webkit-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+          -moz-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+        }
+        &:focus{
+          outline: none;
+        }
+      }
+
+      .drawer-btn-container{
+        padding-left: 20px;
+        flex: 1;
+        border-bottom: 1px solid rgba($color-card, $alpha: 0.6);
+        display: flex;
+        align-items: center;
+        h3{
+          flex: 1;
+          font-size: $h3;
+          display: block;
+          text-align: center;
+          margin-top: 10px;
+        }
+      }
+
+      .drawer-product-container{
+        flex: 5;
+        padding: 10px 20px;
+        overflow-y: scroll;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+      }
+        .cart-item{
+          display: flex;
+          margin-bottom: 20px;
+          .img-container{
+            flex: 2;
+            img{
+              display: block;
+              width: 100%;
+              border-radius: 5px;
+            }
+          }
+
+          .cart-content{
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-left: 10px;
+
+            h3{
+              font-size: $h4;
+            }
+
+            h4{
+              font-size: $font-base;
+            }
+
+            .quantity{
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              background-color: rgba($color-card, $alpha: 0.3);
+              width: 50px;
+              height: 40px;
+              margin-right: 10px;
+              position: relative;
+              padding-left: 10px;
+              &:hover{
+                  .top,.bottom{
+                      display: block;
+                  }
+              }
+              
+
+              .top{
+                  position: absolute;
+                  width: 10px;
+                  height: 10px;
+                  right: 5px;
+                  top: 5px;
+                  border-left: 1px solid $color-card;
+                  border-bottom: 1px solid $color-card;
+                  transform: rotate(135deg);
+                  cursor: pointer;
+                  display: none;
+                  transition: $transition;
+                  &:hover{
+                      border-width: 2px;
+                  }
+              }
+              .bottom{
+                  position: absolute;
+                  width: 10px;
+                  height: 10px;
+                  right: 5px;
+                  bottom: 5px;
+                  border-left: 1px solid $color-card;
+                  border-bottom: 1px solid $color-card;
+                  transform: rotate(-45deg);
+                  cursor: pointer;
+                  display: none;
+                  transition: $transition;
+                  &:hover{
+                      border-width: 2px;
+                  }
+                  
+              }
+            }
+
+          }
+
+          .remove-btn{
+            flex: 1;
+            text-align: right;
+            span{
+              color: $color-card;
+              cursor: pointer;
+              transition: $transition;
+              &:hover{
+                color: $color-main;
+              }
+            }
+          }
+        }
+      }
+
+      .drawer-bottom-container{
+        flex: 1;
+        padding: 10px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-top: 1px solid rgba($color-card, $alpha: 0.5);
+        strong{
+          margin-bottom: 10px;
+        }
+        .btn-group{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          button{
+            width: 120px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: $font-base-lg;
+            border: none;
+            border-radius: 30px;
+            background-color: rgba($color-card, $alpha: 0.6);
+            cursor: pointer;
+            transition: $transition;
+            color: $color-main;
+            &:hover{
+                box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+                -webkit-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+                -moz-box-shadow: -1px 7px 17px -8px rgba(0,0,0,0.66);
+                background-color: $color-card;
+            }
+            &:focus{
+                outline: none;
+            }
+            &:first-child{
+              margin-right: 10px;
+            }
+
+          }
+        }
+    }
   }
-  
+  }
   .light-theme {
-    @include content($clr-bcg-lignt, $clr-font-light);
+    @include content($clr-bcg-lignt, $clr-font-light,$clr-card-back-light);
   }
   
   .dark-theme {
-    @include content($clr-bcg-dark, $clr-font-dark);
+    @include content($clr-bcg-dark, $clr-font-dark,$clr-card-back-dark);
   }
-  

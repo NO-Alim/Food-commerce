@@ -2,10 +2,8 @@ import React,{useRef,useState,useEffect,useCallback} from 'react'
 import './scss/MultiSlider.scss'
 
 //const MultiRangeSlider = ({min,max}) => {
-const MultiRangeSlider = () => {
+const MultiRangeSlider = ({min, max}) => {
   //const {shopData, setShopData,saleData, setSaleData} = useGlobalContext();
-  const min = 1;
-  const max = 100;
 
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
@@ -28,7 +26,7 @@ const MultiRangeSlider = () => {
       range.current.style.left = `${minPercent}%`;
       range.current.style.width = `${maxPercent - minPercent}%`;
       }
-  }, [minVal, getPercent]);
+  }, [minVal, getPercent,min,max]);
 
   // Set width of the range to decrease from the right side
   useEffect(() => {
@@ -39,7 +37,12 @@ const MultiRangeSlider = () => {
       range.current.style.width = `${maxPercent - minPercent}%`;
       }
 
-  }, [maxVal, getPercent]);
+  }, [maxVal, getPercent,min,max]);
+
+  useEffect(() =>{
+    setMinVal(min);
+    setMaxVal(max)
+  },[min,max])
 
   // // const handleSlideShop = () => {
   // //   //const filterShop = shopData.filter(item => item.price >= minVal);

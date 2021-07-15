@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import { useGlobalContext } from '../context';
-import {NavLink} from 'react-router-dom'
+import {NavLink, useHistory} from 'react-router-dom'
 import {FaSun,FaMoon,FaTimes} from 'react-icons/fa'
 import {FiMenu,FiShoppingCart,FiSearch} from 'react-icons/fi'
 import Drawer from '@material-ui/core/Drawer';
@@ -16,15 +16,14 @@ const useStyles = makeStyles({
         display: 'flex',
       },
     list: {
-        width: 250,
+        width: 'auto',
       },
       fullList: {
         width: 'auto',
       },
       drawerPaper : {
-          width: 250,
-          background: "#0b162a",
-          color: "#e9e9e9"
+          width: 'auto',
+          background: "transparent",
       }
   });
 
@@ -41,11 +40,12 @@ const getStorageTheme = () => {
 const Navbar = () => {
     const classes = useStyles();
     const {product} = useGlobalContext();
-  const [theme, setTheme] = useState(getStorageTheme());
+    const [theme, setTheme] = useState(getStorageTheme());
+    const [quantity, setQuantity] = useState(1);
   //drawer
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
-
+  const location = useHistory();
   const toggleTheme = () => {
     if (theme === 'light-theme') {
       setTheme('dark-theme')
@@ -62,6 +62,12 @@ const toggleCartDrawer = () => {
     setCartDrawerOpen(!cartDrawerOpen);
 }
 
+const handleDecrease = () =>{
+    if (quantity > 1) {
+        setQuantity(quantity - 1)
+    }
+}
+
   useEffect(() => {
     document.documentElement.className = theme;
     localStorage.setItem('theme',theme);
@@ -74,7 +80,7 @@ const toggleCartDrawer = () => {
                 <div className="nav-container">
                     <div className="link-container">
                         <ul>
-                            <li><NavLink to="/">Home</NavLink></li>
+                            <li><NavLink exact to="/">Home</NavLink></li>
                             <li><NavLink to="/shop">shop</NavLink></li>
                             <li><NavLink to="/campaigns">campaigns</NavLink></li>
                             <li><NavLink to="/sell">sell</NavLink></li>
@@ -83,7 +89,7 @@ const toggleCartDrawer = () => {
                     </div>
                     <div className="logo-container">
                         <div className="logo">
-                            <h1>FoodCare</h1>
+                            <h1 onClick={() => location.push('/')}>FoodCare</h1>
                         </div>
                     </div>
                     <div className="cart-menu">
@@ -127,6 +133,32 @@ const toggleCartDrawer = () => {
                 <div className="drawer-container cart-drawer">
                     <div className="drawer-btn-container">
                         <button onClick={() => setCartDrawerOpen(false)} className="close-btn"><FaTimes /></button>
+                        <h3>My Cart</h3>
+                    </div>
+                    <div className="drawer-product-container">
+                        <div className="cart-item">
+                            <div className="img-container">
+                                <img src='https://cdn.pixabay.com/photo/2017/02/08/11/15/egg-2048476__340.jpg'/>
+                            </div>
+                            <div className="cart-content">
+                                <h3>Product Name</h3>
+                                <div className="quantity">{quantity}
+                                    <span className="top" onClick={() => setQuantity(quantity + 1)}></span>
+                                    <span className="bottom" onClick={() => handleDecrease()}></span>
+                                </div>
+                                <h4>$345</h4>
+                            </div>
+                            <div className="remove-btn">
+                                <span><FaTimes /></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="drawer-bottom-container">
+                        <strong>Total: $324</strong>
+                        <div className="btn-group">
+                            <button>View cart</button>
+                            <button>Checkout</button>
+                        </div>
                     </div>
                 </div>
         </Drawer>

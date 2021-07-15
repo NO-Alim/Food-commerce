@@ -3,6 +3,7 @@ import './scss/Header.scss'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import {FiArrowLeft,FiArrowRight} from 'react-icons/fi'
+import { useHistory } from 'react-router-dom';
 
 
 const arrowStyles = {
@@ -16,6 +17,7 @@ const arrowStyles = {
 
 
 const Header = () => {
+    const location = useHistory();
     return (
         <div className="header">
             <div className="header-container">
@@ -64,7 +66,7 @@ const Header = () => {
                             <h3>Healthy Life with</h3>
                             <h2>Nature Organic</h2>
                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt, molestiae dolor? Quidem, nesciunt? Officiis, atque.</p>
-                            <button>Shop Now</button>
+                            <button onClick={() => location.push('/shop')}>Shop Now</button>
                         </div>
                     </div>
                     <div className='carousel-item'>

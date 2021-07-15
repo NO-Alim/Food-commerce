@@ -1,15 +1,16 @@
 import React from 'react'
 import './scss/Footer.scss'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {FaEnvelope,FaMapMarkerAlt,FaMobileAlt} from 'react-icons/fa'
 
 const Footer = () => {
+    const location = useHistory();
     return (
         <div className="footer-container">
             <footer>
                 <div className="footer-contact">
                     <div className="footer-heading">
-                        <h1>FoodCare</h1>
+                        <h1 onClick={() => location.push('/')}>FoodCare</h1>
                     </div>
                     <div className="footer-content">
                         <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.</p>
