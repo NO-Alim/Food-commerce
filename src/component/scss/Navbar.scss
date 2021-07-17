@@ -372,8 +372,58 @@ $font-base-lg: 18px;
 
           }
         }
+      }
     }
-  }
+    .menu-drawer{
+      .drawer-btn-container{
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 20px;
+      }
+
+      .logo-container{
+        flex: 1;
+        padding: 0;
+        h1{
+          color: #fff;
+          font-size: $heading-sm;
+          cursor: pointer;
+          font-family: 'Tangerine', cursive;
+          font-weight: 700;
+          padding: 20px;
+          @media (max-width: $small) {
+            font-size: $h1;
+          }
+        }
+      }
+
+      .link-container{
+        flex: 5;
+        padding-left: 20px;
+        ul{
+          border-right: 5px solid $color-card;
+          background: $color-card;
+          li{
+            a{
+              display: block;
+              padding: 10px 0;
+              border-start-end-radius: 10px;
+              border-end-end-radius: 10px;
+              background: yellow;
+              &.active{
+                border-start-end-radius: 0;
+                border-end-end-radius: 0;
+                background-color: $color-card;
+                &.active ~ a{
+                  background-color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
   .light-theme {
     @include content($clr-bcg-lignt, $clr-font-light,$clr-card-back-light);

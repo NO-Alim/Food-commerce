@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Loader from '../component/Loader';
 import { useGlobalContext } from '../context';
@@ -14,14 +14,86 @@ const SingleProduct = () => {
     const {id} = useParams();
     const {product,loading} = useGlobalContext();
     const [quantity, setQuantity] = useState(1);
+    const ThisProduct = product.filter(item => item.id === id);
+    //for 
+    const [cartItem, setCartItem] = useState({
+        name: null,
+        id: null,
+        cardId: null,
+        price: null,
+        priceTwo: null,
+        quantity: null,
+        img: 'd'
+    })
+    const [cartList, setCartList] = useState([]);
+    const localList = JSON.parse(localStorage.getItem('cartList'));
 
-    //const ThisProduct = product.filter(item => item.id == id);
+
+    //for append item in the cartList
+
+    const appendToStorage = (name, data) => {
+        var prevItems = localStorage.getItem(name)
+        try{
+            prevItems = JSON.parse(prevItems);
+        } catch (e){
+            prevItems = []
+        }
+        localStorage.setItem(name, JSON.stringify(prevItems.concat(data)))
+    }
+
+    const handleAddCart = () => {
+        const localList = JSON.parse(localStorage.getItem('cartList'));
+        //when there is no item 
+        if (localStorage.getItem('cartList') === null) {
+            localStorage.setItem('cartList',JSON.stringify(cartList))
+        }
+
+        //
+        if (!localList) {
+            appendToStorage('cartList', cartItem);
+            console.log("one");
+        } else if (localList.some((item) => item.id === cartItem.id)) {
+            // //when array contain same object
+            // //var itemPrice = localList.find((item) => item.id === cartItem.id);
+            var sameItem = JSON.parse(localStorage.cartList);
+            for(var i = 0;i < sameItem.length; i++){
+                if (cartItem.id === sameItem[i].id) {
+                    sameItem[i].quantity += cartItem.quantity;
+                    break;
+                }
+            }
+            localStorage.setItem('cartList',JSON.stringify(sameItem))
+            console.log(cartItem.id,"two");
+
+        } else {
+            //concat new object
+            appendToStorage('cartList', cartItem)
+            console.log("three");
+        }
+    }
+
+    useEffect(() =>{
+        if (!loading) {
+            setCartItem({
+                name: ThisProduct[0].name,
+                id: ThisProduct[0].id,
+                cardId: null,
+                price: ThisProduct[0].price,
+                priceTwo: null,
+                quantity: quantity,
+                img: ThisProduct[0].image
+
+            })
+        }
+    },[loading]);
 
     const handleDecrease = () =>{
         if (quantity > 1) {
             setQuantity(quantity - 1)
         }
     }
+
+
     if (loading) {
         return(
             <Loader />
@@ -66,7 +138,7 @@ const SingleProduct = () => {
                                             <span className="top" onClick={() => setQuantity(quantity + 1)}></span>
                                             <span className="bottom" onClick={() => handleDecrease()}></span>
                                             </div>
-                                            <button className="add-btn">Add Card</button>
+                                            <button className="add-btn" onClick={() => handleAddCart()}>Add Card</button>
                                             <button className="buy-btn">Buy Now</button>
                                             
                                             <span className="heart"><FaRegHeart /></span>
