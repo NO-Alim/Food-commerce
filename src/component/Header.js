@@ -17,7 +17,7 @@ const arrowStyles = {
 
 
 const Header = () => {
-    const location = useHistory();
+    const lacation = useHistory();
     return (
         <div className="header">
             <div className="header-container">
@@ -66,7 +66,7 @@ const Header = () => {
                             <h3>Healthy Life with</h3>
                             <h2>Nature Organic</h2>
                             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt, molestiae dolor? Quidem, nesciunt? Officiis, atque.</p>
-                            <button onClick={() => location.push('/shop')}>Shop Now</button>
+                            <button onClick={() => lacation.push('/sell')}>Shop Now</button>
                         </div>
                     </div>
                     <div className='carousel-item'>

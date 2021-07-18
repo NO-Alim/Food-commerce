@@ -6,7 +6,7 @@ import {FiShoppingBag} from 'react-icons/fi'
 import { useHistory } from 'react-router-dom';
 
 const FoodShortList = () => {
-    const {product} = useGlobalContext();
+    const {product,handleAddCart} = useGlobalContext();
     const location = useHistory();
     const SampleNextArrow = (props) => {
         const { className, style, onClick } = props;
@@ -86,7 +86,7 @@ const FoodShortList = () => {
                                     <p style={{cursor: "pointer"}} onClick={() => location.push(`/product/${item.id}`)}>{ind + 1}:{item.name}</p>
                                     <span className="price">${item.price}</span>
                                     <div className="btn-group">
-                                      <button><FiShoppingBag /></button>
+                                      <button onClick={() => handleAddCart(item.id)}><FiShoppingBag /></button>
                                     </div>
                         
                                 </div>

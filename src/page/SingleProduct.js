@@ -12,7 +12,7 @@ import 'react-tabs/style/react-tabs.css';
 
 const SingleProduct = () => {
     const {id} = useParams();
-    const {product,loading} = useGlobalContext();
+    const {product,loading,refCounter,setRefCounter} = useGlobalContext();
     const [quantity, setQuantity] = useState(1);
     const ThisProduct = product.filter(item => item.id === id);
     //for 
@@ -51,7 +51,6 @@ const SingleProduct = () => {
         //
         if (!localList) {
             appendToStorage('cartList', cartItem);
-            console.log("one");
         } else if (localList.some((item) => item.id === cartItem.id)) {
             // //when array contain same object
             // //var itemPrice = localList.find((item) => item.id === cartItem.id);
@@ -63,13 +62,12 @@ const SingleProduct = () => {
                 }
             }
             localStorage.setItem('cartList',JSON.stringify(sameItem))
-            console.log(cartItem.id,"two");
 
         } else {
             //concat new object
             appendToStorage('cartList', cartItem)
-            console.log("three");
         }
+        setRefCounter(refCounter - 1)
     }
 
     useEffect(() =>{
@@ -140,7 +138,6 @@ const SingleProduct = () => {
                                             </div>
                                             <button className="add-btn" onClick={() => handleAddCart()}>Add Card</button>
                                             <button className="buy-btn">Buy Now</button>
-                                            
                                             <span className="heart"><FaRegHeart /></span>
                                         </div>
                                     </div>

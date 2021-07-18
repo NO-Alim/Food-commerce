@@ -61,8 +61,9 @@ $font-base-lg: 18px;
                 a{
                   font-size: $font-base-lg;
                   font-weight: bold;
+                  border-bottom: 2px solid transparent;
                   &.active{
-                    color: red;
+                    border-color: $color-main;
                   }
                 }
               }
@@ -138,12 +139,15 @@ $font-base-lg: 18px;
                   border-radius: 10px;
                   width: 15px;
                   height: 20px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  z-index: -1;
+                  z-index: 0;
                   color: #000;
                   font-size: 15px;
+                  display: none;
+                  @media (max-width: $ex-medium) {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  }
                 }
               }
               .cart-items-price{
@@ -254,6 +258,12 @@ $font-base-lg: 18px;
 
             h3{
               font-size: $h4;
+            }
+
+            .into{
+              font-size: 10px;
+              font-weight: lighter;
+              padding-left: 10px;
             }
 
             h4{

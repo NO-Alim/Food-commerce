@@ -4,7 +4,10 @@ import './scss/Blog.scss'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import {FiShare2,FiHeart} from 'react-icons/fi'
 import {FaHeart} from 'react-icons/fa'
+import { useHistory } from 'react-router-dom';
 const Blog = () => {
+
+    const location = useHistory();
     const {product} = useGlobalContext();
     const blogList = product.slice(0,3)
     return (
@@ -42,7 +45,7 @@ const Blog = () => {
                                                 {/* <FiHeart /> */}
                                             </div>
                                             <div className="right">
-                                                <span className="read-more">Read More</span>
+                                                <span className="read-more" onClick={() => location.push(`/blog/${item.id}`)}>Read More</span>
                                             </div>
                                         </div>
                                     </div>
@@ -50,7 +53,7 @@ const Blog = () => {
                             )
                         })}
                 </div>
-                <button>Load More</button>
+                <button onClick={() => location.push('/all-blog')}>Load More</button>
             </div>
         </div>
     )

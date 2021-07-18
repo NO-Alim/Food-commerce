@@ -2,7 +2,7 @@ import React,{useState,useEffect, useRef} from 'react'
 import { useGlobalContext } from '../context';
 import {NavLink, useHistory} from 'react-router-dom'
 import {FaSun,FaMoon,FaTimes} from 'react-icons/fa'
-import {FiMenu,FiShoppingCart,FiChevronsRight} from 'react-icons/fi'
+import {FiMenu,FiShoppingCart,FiChevronsRight, FiChevronsLeft} from 'react-icons/fi'
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from '@material-ui/core/styles';
 import './scss/Navbar.scss'
@@ -40,11 +40,11 @@ const getStorageTheme = () => {
 
 const Navbar = () => {
     const classes = useStyles();
-    const {product} = useGlobalContext();
+    const {product,loading,deleteCartItem,refCounter, setRefCounter} = useGlobalContext();
     const [theme, setTheme] = useState(getStorageTheme());
-    const [quantity, setQuantity] = useState(1);
     const width = useWindowWidth();
-    const cartList = JSON.parse(localStorage.getItem('cartList'));
+    const [cartList, setCartList] = useState(JSON.parse(localStorage.getItem('cartList')));
+    const [totalPrice, setTotalPrice] = useState(0.00);
   //drawer
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
@@ -77,10 +77,29 @@ const toggleCartDrawer = () => {
 
 
 //cart quantity
-const handleDecrease = () =>{
-    if (quantity > 1) {
-        setQuantity(quantity - 1)
+const handleIncrease = (id) => {
+    var sameItem = JSON.parse(localStorage.cartList);
+    for(var i = 0;i < sameItem.length; i++){
+        if (id === sameItem[i].id) {
+            sameItem[i].quantity += 1;
+            break;
+        }
     }
+    localStorage.setItem('cartList',JSON.stringify(sameItem))
+    setRefCounter(refCounter + 1)
+}
+const handleDecrease = (id) =>{
+    var sameItem = JSON.parse(localStorage.cartList);
+    for(var i = 0;i < sameItem.length; i++){
+        if (id === sameItem[i].id) {
+            if (sameItem[i].quantity > 1) {
+                sameItem[i].quantity -= 1;
+            }
+            break;
+        }
+    }
+    localStorage.setItem('cartList',JSON.stringify(sameItem))
+    setRefCounter(refCounter - 1)
 }
 //theme
   useEffect(() => {
@@ -90,7 +109,6 @@ const handleDecrease = () =>{
 
 
   //cart
-
   const handleClick = (e) => {
       if (!cartBtnRef.current.contains(e.target)) {
           if (!cartRef.current.contains(e.target)) {
@@ -111,6 +129,10 @@ const handleDecrease = () =>{
       }
   }
 
+  
+
+  
+
 
   useEffect(() =>{
     document.addEventListener('click', handleClick);
@@ -124,7 +146,22 @@ const handleDecrease = () =>{
         return () =>{
             mediaWidth()
         }
-  },[width])
+  },[width]);
+
+  useEffect(() => {
+      setCartList(JSON.parse(localStorage.getItem('cartList')));
+  },[refCounter]);
+
+  useEffect(() => {
+    if (cartList) {
+        if (cartList.length < 1) {
+            setTotalPrice(0);
+        } else{
+            const getTotalPrice = cartList.map(item => item.price * item.quantity).reduce((prev,next) => prev + next);
+            setTotalPrice(getTotalPrice);
+        }
+    }
+  },[refCounter])
 
     return (
         <div>
@@ -152,10 +189,10 @@ const handleDecrease = () =>{
                             </div>
                             <div className="cart-icon">
                                 <span onClick={() => toggleCartDrawer()} ref={cartBtnRef}><FiShoppingCart/></span>
-                                <span className="item-total">0</span>
+                                <span className='item-total'>{cartList ? cartList.length : 0 }</span>
                             </div>
                             <div className="cart-items-price">
-                                <span>0<span className="spacial-tag">/</span>$0.00</span>
+                                <span>{cartList ? <span>{cartList.length}</span> : <span>0</span>}<span className="spacial-tag">/</span>${totalPrice}</span>
                             </div>
                             <div className="menu" ref={menuRef}>
                                 <span onClick={() => toggleDrawer()}><FiMenu /></span>
@@ -173,7 +210,7 @@ const handleDecrease = () =>{
             classes={{paper: classes.drawerPaper}}>
                 <div className="drawer-container menu-drawer">
                     <div className="drawer-btn-container">
-                        <button onClick={() => setDrawerOpen(false)} className="close-btn" ref={menuBtnRef}><FaTimes /></button>
+                        <button onClick={() => setDrawerOpen(false)} className="close-btn" ref={menuBtnRef}><FiChevronsLeft /></button>
                     </div>
                     <div className="logo-container">
                         <div className="logo">
@@ -203,8 +240,9 @@ const handleDecrease = () =>{
                         <h3>My Cart</h3>
                     </div>
                     <div className="drawer-product-container">
-                        {/* put if statement & check cartList contain */}
-                        {cartList.map((item,ind) => {
+                        {!cartList && <h3>no item added</h3>}
+                        {cartList ? cartList.length < 1 && <h1>no item added</h1>: null}
+                        {cartList && cartList.map((item,ind) => {
                                 return(
                                     <div className="cart-item" key={ind}>
                                         <div className="img-container">
@@ -213,20 +251,21 @@ const handleDecrease = () =>{
                                         <div className="cart-content">
                                             <h3>{item.name}</h3>
                                             <div className="quantity">{item.quantity}
-                                                <span className="top" onClick={() => setQuantity(quantity + 1)}></span>
-                                                <span className="bottom" onClick={() => handleDecrease()}></span>
+                                                <span className="top" onClick={() => handleIncrease(item.id)}></span>
+                                                <span className="bottom" onClick={() => handleDecrease(item.id)}></span>
                                             </div>
+                                            {/* <span className="into"><FaTimes /></span> */}
                                             <h4>${item.price}</h4>
                                         </div>
                                         <div className="remove-btn">
-                                            <span><FaTimes /></span>
+                                            <span onClick={() => {deleteCartItem(item.id); setRefCounter(refCounter + 1)}}><FaTimes /></span>
                                         </div>
                                     </div>
                                 )
                             })}
                     </div>
                     <div className="drawer-bottom-container">
-                        <strong>Total: $324</strong>
+                        <strong>Total: ${totalPrice}</strong>
                         <div className="btn-group">
                             <button>View cart</button>
                             <button>Checkout</button>

@@ -11,6 +11,8 @@ import Error from './page/Error'
 import FilteredProduct from './page/FilteredProduct';
 import SingleProduct from './page/SingleProduct';
 import ScrollToTopCopy from './ScrollToTop copy';
+import SingleBlog from './page/SingleBlog';
+import AllBlog from './page/AllBlog';
 
 
 
@@ -43,6 +45,12 @@ function App() {
         </Route>
         <Route exact path="/product/:id">
           <SingleProduct />
+        </Route>
+        <Route exact path="/blog/:id">
+          <SingleBlog />
+        </Route>
+        <Route exact path="/all-blog">
+          <AllBlog />
         </Route>
         <Route exact path="*">
           <Error />

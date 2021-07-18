@@ -7,7 +7,7 @@ import Loader from '../component/Loader'
 
 const FilteredProduct = () => {
     const {id} = useParams();
-    const {product,loading} = useGlobalContext();
+    const {product,loading,handleAddCart} = useGlobalContext();
     const location = useHistory();
     //by include
     const FilterItem = product.filter(item => item.category.toLowerCase().replace('/','').includes(id.toLowerCase()));
@@ -34,7 +34,7 @@ const FilteredProduct = () => {
                                     <p className="dis">{item.IntroOne.substring(0,20)}.</p>
                                     <span className="price">${item.id.substring(0,3)}</span>
                                     <div className="btn-group">
-                                    <button><FiShoppingBag /></button>
+                                    <button onClick={() => handleAddCart(item.id)}><FiShoppingBag /></button>
                                     </div>
                                 </div>
                             </div>

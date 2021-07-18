@@ -7,7 +7,7 @@ import {FiShoppingBag} from 'react-icons/fi'
 import { useHistory } from 'react-router-dom';
 
 const SearchSection = () => {
-    const {product} = useGlobalContext();
+    const {product,handleAddCart} = useGlobalContext();
     const [searchText, setSearchText] = useState('');
     const [result, setResult] = useState([]);
     const [noResult, setNoResult] = useState(true);
@@ -60,7 +60,7 @@ const SearchSection = () => {
                                         <p className="dis">{item.IntroOne.substring(0,20)}.</p>
                                         <span className="price">${item.id.substring(0,3)}</span>
                                         <div className="btn-group">
-                                        <button><FiShoppingBag /></button>
+                                        <button onClick={() => handleAddCart(item.id)}><FiShoppingBag /></button>
                                         </div>
                                     </div>
                                 </div>
