@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Festive&family=Roboto&family=Tangerine:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap');
+//font-family: 'Oswald', sans-serif;
 
 $clr-bcg-lignt: rgb(255, 190, 106);
 $clr-font-light: rgb(0, 0, 0);
@@ -35,11 +36,116 @@ $font-base-lg: 18px;
 
 @mixin content($color-default, $color-main, $color-card) {
     .contact-container{
+        font-family: Arial, Helvetica, sans-serif;
         padding: $padding-margin-md;
         padding-bottom: $padding-margin-ex-sm;
         @media (max-width: $extraSmall) {
             padding: $padding-margin-md $padding-margin-ex-sm;
             padding-bottom: $padding-margin-ex-sm;
+        }
+        .map-container{
+        }
+        .contact-container{
+            padding: 0;
+            margin-top: $padding-margin-sm;
+            display: flex;
+
+            .form-container{
+                flex: 1;
+                margin-right: $padding-margin-sm;
+                h3{
+                    font-size: $h3;
+                    font-weight: 400;
+                    letter-spacing: 1px;
+                    font-family: 'Oswald', sans-serif;
+                    margin-bottom: $padding-margin-sm;
+                }
+                form{
+                    width: 100%;
+
+                    input,textarea{
+                        display: block;
+                        width: 100%;
+                        color: $color-main;
+                        background: rgba($color-main, $alpha: 0.2);
+                        padding: 10px;
+                        border: 1px solid transparent;
+                        margin-bottom: $padding-margin-ex-sm;
+                        &:focus{
+                            outline: none;
+                        }
+                    }
+                    
+                    .author{
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        grid-gap: $padding-margin-ex-sm;
+                        padding: 10px 0;
+                    }
+                    .message{
+                        textarea{
+                            resize: vertical;
+                            width: 100%;
+                            min-height: 100%;
+                            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                            box-sizing: border-box;
+                        }
+                    }
+
+                    input[type=submit]{
+                        font-size: $font-base;
+                        color: $color-main;
+                        font-weight: bold;
+                        cursor: pointer;
+                        transition: $transition;
+                        &:hover{
+                            background: rgba($color-main, $alpha: 0.3)
+                        }
+                    }
+                    ::placeholder {
+                        font-family: Arial, Helvetica, sans-serif;
+                    }
+                }
+            }
+            .contact-info{
+                flex: 1;
+                h3{
+                    font-size: $h3;
+                    font-weight: 400;
+                    letter-spacing: 1px;
+                    font-family: 'Oswald', sans-serif;
+                    margin-bottom: $padding-margin-sm;
+                }
+                p{
+                    margin-bottom: $padding-margin-sm;
+                }
+                .address{
+                    background-color: rgba($color-main, $alpha: 0.2);
+                    margin-bottom: $padding-margin-ex-sm;
+                    padding: $padding-margin-ex-sm ;
+                    border-top: 1px solid rgba($color-main, $alpha: 0.2);
+                }
+                h4{
+                    font-size: $h4;
+                    font-family: 'Oswald', sans-serif;
+                    font-weight: 400;
+                    margin-bottom: $padding-margin-ex-sm;
+                }
+
+                .working-hour{
+                    display: flex;
+                    flex-direction: row;
+                    strong{
+                        font-size: $font-base;
+                        margin-right: 10px;
+                    }
+                    span{
+                        font-size: 14px;
+                        letter-spacing: 1px;
+                    }
+                }
+            }
         }
     }
 }

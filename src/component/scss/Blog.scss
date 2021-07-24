@@ -172,9 +172,13 @@ $font-base-lg: 18px;
                             cursor: pointer;
                             display: inline-block;
                             padding: 5px;
-                            background: $color-default;
+                            background: rgba($color-default, $alpha: 0.7);
                             border-radius: 5px;
                             cursor: pointer;
+                            transition: $transition;
+                            &:hover{
+                                background: rgba($color-default, $alpha: 1);
+                            }
                         }
                     }
                 }

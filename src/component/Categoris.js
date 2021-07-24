@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context'
 import './scss/Categoris.scss'
 
 const Categoris = () => {
-    const {product} = useGlobalContext();
+    const {product,loading} = useGlobalContext();
 
     const getUniqList = (arr,key) =>{
         return [...new Map(arr.map(item => [item[key],item])).values()];
@@ -18,6 +18,7 @@ const Categoris = () => {
                 <h1 className="category-title">FEATURED CATEGORIES</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, ratione consequatur id pariatur tempore eaque ducimus placeat quos autem ipsa!</p>
                 <div className="category-cards">
+                {loading ? <loading /> : null}
                 {category.map((item,ind) =>{
                     var cleanPath = item.category;
                     cleanPath = cleanPath.replace("/", "")
