@@ -151,6 +151,66 @@ $font-base-lg: 18px;
             }
         }
     }
+
+    .modal{
+        background-color: $color-default;
+        max-width: 500px;
+        height: 50vh;
+        max-height: 500px;
+        margin: 25vh auto;
+        padding: $padding-margin-ex-sm;
+        text-align: right;
+        
+        span{
+            cursor: pointer;
+        }
+
+        .modal-content{
+            text-align: center;
+            margin-top: $padding-margin-ex-sm;
+            h2{
+                font-size: $h2;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 400;
+                letter-spacing: 2px;
+                margin-bottom: $padding-margin-ex-sm;
+            }
+            h4{
+                font-size: $h4;
+                font-family: 'Oswald', sans-serif;
+                font-weight: 400;
+                letter-spacing: 2px;
+                margin-bottom: $padding-margin-sm;
+            }
+
+            button{
+                width: 120px;
+                height: 40px;
+                font-size: $font-base-lg;
+                font-weight: bold;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $color-main;
+                background-color: rgba($color-card, $alpha: 0.2);
+                border: 1px solid rgba($color-main, $alpha: 0.2);
+                border-radius: 5px;
+                cursor: pointer;
+                transition: $transition;
+                @media (max-width: $extraSmall) {
+                   font-size: $font-base;
+                   width: 100px;
+                }
+                &:focus{
+                    outline: none;
+                }
+                &:hover{
+                    background-color: rgba($color-card, $alpha: 0.5)
+                }
+            }
+        }
+    }
 }
 
 

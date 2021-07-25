@@ -55,17 +55,6 @@ const FullCart = () => {
       
     },[refCounter]);
 
-    useEffect(() => {
-        function checkUserData() {
-            console.log('red');
-        }
-      
-        window.addEventListener('storage', checkUserData)
-        return () => {
-          window.removeEventListener('storage', checkUserData)
-        }
-      }, [])
-
     return (
         <div className="full-cart-container">
             <div className="drawer-product-container">
@@ -101,7 +90,7 @@ const FullCart = () => {
             <span className="hr"></span>
             <div className="total-price">
                 <h2>total price</h2>
-                <h2>${(Math.round(totalPrice * 100) / 100).toFixed(2)}</h2>
+                <h2>${cartList ? cartList.length > 0 ? <span>{(Math.round((cartList.map(item => item.price * item.quantity).reduce((prev,next) => prev + next)) * 100) / 100).toFixed(2)}</span>: 0 : 0}</h2>
                 <button onClick={() => location.push('/checkout')}>checkOut</button>
             </div>
         </div>

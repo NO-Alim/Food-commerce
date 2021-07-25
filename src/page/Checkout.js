@@ -1,11 +1,23 @@
 import React,{useState, useEffect} from 'react'
 import {useGlobalContext} from '../context'
+import Modal from 'react-modal';
 import './scss/Checkout.scss'
+import {FaTimes} from 'react-icons/fa'
+import { useHistory } from 'react-router-dom';
 
+
+
+Modal.setAppElement("#root");
 const Checkout = () => {
     const {product,loading,refCounter, setRefCounter} = useGlobalContext();
     const [cartList, setCartList] = useState(JSON.parse(localStorage.getItem('cartList')));
     const [totalPrice, setTotalPrice] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const location = useHistory();
+    const toggleModal = (e) => {
+        e.preventDefault()
+        setIsModalOpen(!isModalOpen);
+    }
 
     useEffect(() => {
         if (cartList) {
@@ -25,7 +37,7 @@ const Checkout = () => {
                     <span>Shipping address</span>
                     <form>
                         <div className="name">
-                            <input type="text" placeholder="First name" />
+                            <input type="text" placeholder="First name"/>
                             <input type="text" placeholder="Last name" />
                         </div>
                         <div className="address">
@@ -46,7 +58,22 @@ const Checkout = () => {
                             <label htmlFor="checkbox">Save this information for next time.</label>
                         </div>
                         <div className="btn-container">
-                            <button>Continue to shipping</button>
+                            <button onClick={toggleModal}>Continue to shipping</button>
+                            <Modal
+                            isOpen={isModalOpen}
+                            onRequestClose={toggleModal}
+                            contentLabel="My dialog" className="modal">
+                                <div>
+                                    <div className="close-btn-container">
+                                        <span onClick={toggleModal} className="modal-close"><FaTimes /></span>
+                                    </div>
+                                    <div className="modal-content">
+                                        <h2>Hey dude!!</h2>
+                                        <h4>This section is under work.</h4>
+                                        <button onClick={() => location.push('/')}>Home</button>
+                                    </div>
+                                </div>
+                            </Modal>
                         </div>
                     </form>
                 </div>

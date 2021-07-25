@@ -44,7 +44,9 @@ const Navbar = () => {
     const [theme, setTheme] = useState(getStorageTheme());
     const width = useWindowWidth();
     const [cartList, setCartList] = useState(JSON.parse(localStorage.getItem('cartList')));
-    const [totalPrice, setTotalPrice] = useState(0.00);
+
+
+    const [totalPrice, setTotalPrice] = useState(0);
   //drawer
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [cartDrawerOpen, setCartDrawerOpen] = useState(false);
@@ -131,8 +133,6 @@ const handleDecrease = (id) =>{
 
   
 
-  
-
 
   useEffect(() =>{
     document.addEventListener('click', handleClick);
@@ -152,16 +152,17 @@ const handleDecrease = (id) =>{
       setCartList(JSON.parse(localStorage.getItem('cartList')));
   },[refCounter]);
 
-  useEffect(() => {
-    if (cartList) {
-        if (cartList.length < 1) {
-            setTotalPrice(0);
-        } else{
-            const getTotalPrice = cartList.map(item => item.price * item.quantity).reduce((prev,next) => prev + next);
-            setTotalPrice(getTotalPrice);
-        }
-    }
-  },[refCounter])
+//   useEffect(() => {
+//     if (cartList) {
+//         if (cartList.length < 1) {
+//             setTotalPrice(0);
+//         } else{
+//             const getTotalPrice = cartList.map(item => item.price * item.quantity).reduce((prev,next) => prev + next);
+//             setTotalPrice(getTotalPrice);
+//         }
+//     }
+//   },[refCounter])
+  
 
     return (
         <div>
@@ -192,7 +193,7 @@ const handleDecrease = (id) =>{
                                 <span className='item-total'>{cartList ? cartList.length : 0 }</span>
                             </div>
                             <div className="cart-items-price">
-                                <span>{cartList ? <span>{cartList.length}</span> : <span>0</span>}<span className="spacial-tag">/</span>${totalPrice}</span>
+                                <span>{cartList ? <span>{cartList.length}</span> : <span>0</span>}<span className="spacial-tag">/</span>${cartList ? cartList.length > 0 ? <span>{(Math.round((cartList.map(item => item.price * item.quantity).reduce((prev,next) => prev + next)) * 100) / 100).toFixed(2)}</span>: 0 : 0}</span>
                             </div>
                             <div className="menu" ref={menuRef}>
                                 <span onClick={() => toggleDrawer()}><FiMenu /></span>
@@ -265,7 +266,7 @@ const handleDecrease = (id) =>{
                             })}
                     </div>
                     <div className="drawer-bottom-container">
-                        <strong>Total: ${(Math.round(totalPrice * 100) / 100).toFixed(2)}</strong>
+                        <strong>Total: ${cartList ? cartList.length > 0 ? <span>{(Math.round((cartList.map(item => item.price * item.quantity).reduce((prev,next) => prev + next)) * 100) / 100).toFixed(2)}</span>: 0 : 0}</strong>
                         <div className="btn-group">
                             <button onClick={() => {location.push('/full-cart');setCartDrawerOpen(false)}}>View cart</button>
                             <button onClick={() => {location.push('/checkout');setCartDrawerOpen(false)}}>Checkout</button>
@@ -278,3 +279,5 @@ const handleDecrease = (id) =>{
 }
 
 export default Navbar
+
+//(Math.round((cartList.map(item => item.price * item.quantity).reduce((prev,next) => prev + next)) * 100) / 100).toFixed(2)
