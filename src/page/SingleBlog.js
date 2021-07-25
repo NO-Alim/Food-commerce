@@ -30,7 +30,7 @@ const SingleBlog = () => {
                                         <ul>
                                             {blogList.map((item,ind) => {
                                                 return (
-                                                    <li>
+                                                    <li key={ind}>
                                                         <Link to={`/blog/${item.id}`}>{item.name} improve heart and immunity.</Link>
                                                     </li>
                                                 )
@@ -43,7 +43,7 @@ const SingleBlog = () => {
                                         <ul>
                                         {blogList.map((item,ind) => {
                                                 return (
-                                                    <li>
+                                                    <li key={ind}>
                                                         <Link to={`/blog/${item.id}`}>{item.name} Delicious And Nutritious Vegetable.</Link>
                                                     </li>
                                                 )

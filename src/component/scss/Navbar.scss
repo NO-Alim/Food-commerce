@@ -158,7 +158,8 @@ $font-base-lg: 18px;
                   font-size: $font-base-lg;
                 }
                 .spacial-tag{
-                  color: #fff;
+                  color: rgba($color-card, $alpha: 1);
+                  padding: 0 5px;
                 }
               }
 
@@ -242,6 +243,7 @@ $font-base-lg: 18px;
           margin-bottom: 20px;
           .img-container{
             flex: 2;
+            cursor: pointer;
             img{
               display: block;
               width: 100%;
@@ -285,7 +287,7 @@ $font-base-lg: 18px;
                       display: block;
                   }
               }
-              
+
 
               .top{
                   position: absolute;
@@ -318,7 +320,7 @@ $font-base-lg: 18px;
                   &:hover{
                       border-width: 2px;
                   }
-                  
+
               }
             }
 
@@ -413,20 +415,19 @@ $font-base-lg: 18px;
         padding-left: 20px;
         ul{
           border-right: 5px solid $color-card;
-          background: $color-card;
           li{
             a{
               display: block;
-              padding: 10px 0;
-              border-start-end-radius: 10px;
-              border-end-end-radius: 10px;
-              background: yellow;
+              padding: 10px;
+              border-start-start-radius: 10px;
+              border-end-start-radius: 10px;
+              background: transpare;
               &.active{
-                border-start-end-radius: 0;
-                border-end-end-radius: 0;
+                //border-start-end-radius: 0;
+                //border-end-end-radius: 0;
                 background-color: $color-card;
                 &.active ~ a{
-                  background-color: #fff;
+                  background-color: $color-card;
                 }
               }
             }
@@ -438,7 +439,7 @@ $font-base-lg: 18px;
   .light-theme {
     @include content($clr-bcg-lignt, $clr-font-light,$clr-card-back-light);
   }
-  
+
   .dark-theme {
     @include content($clr-bcg-dark, $clr-font-dark,$clr-card-back-dark);
   }

@@ -49,10 +49,16 @@ $font-base-lg: 18px;
             padding: 0;
             margin-top: $padding-margin-sm;
             display: flex;
+            @media (max-width: $ex-medium) {
+                flex-direction: column;
+            }
 
             .form-container{
                 flex: 1;
                 margin-right: $padding-margin-sm;
+                @media (max-width: $ex-medium) {
+                    margin-right: 0;
+                }
                 h3{
                     font-size: $h3;
                     font-weight: 400;
@@ -110,6 +116,9 @@ $font-base-lg: 18px;
             }
             .contact-info{
                 flex: 1;
+                @media (max-width: $ex-medium) {
+                    margin-top: $padding-margin-sm;
+                }
                 h3{
                     font-size: $h3;
                     font-weight: 400;

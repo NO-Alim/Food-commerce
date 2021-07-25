@@ -77,7 +77,7 @@ const Sell = () => {
                     <div className="filter-content">
                         <h3 className="filter-input-label">Search product</h3>
                         <form>
-                            <input type="text" placeholder="Type here" className="filter-input" />
+                        <input className="filter-input" type="text" value={searchValue} placeholder="Type Here" onChange={(e) => setSearchValue(e.target.value)} />
                         </form>
                     <div className="filter-item">
                             <div className="filter-accordion" onClick={() => setSearchAccordion(!searchAccordion)}>
@@ -104,7 +104,7 @@ const Sell = () => {
                     <div className="products-list">
                         {products.slice(0,loadNumber).map((item,ind) =>{
                             let price = item.price * (1 - (percentage ));
-                            let initialPrice = (price.toString().slice(0,6));
+                            let initialPrice = ((Math.round(price * 100) / 100).toFixed(2));
                             return(
                                 <article key={ind} key={item.id}>
                                     <div className="card">

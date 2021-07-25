@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap');
+//font-family: 'Oswald', sans-serif;
+
+$clr-bcg-lignt: rgb(255, 190, 106);
+$clr-font-light: rgb(0, 0, 0);
+$clr-card-back-light: rgb(241, 241, 241);
+
+$clr-bcg-dark: rgb(70, 44, 2);
+$clr-font-dark: rgb(253, 253, 253);
+$clr-card-back-dark: rgb(129, 129, 129);
+
+
+$padding-margin-ex-lg: 150px;
+$padding-margin-lg: 100px;
+$padding-margin-md: 70px;
+$padding-margin-sm: 50px;
+$padding-margin-ex-sm: 20px;
+
+$transition: all 0.3s ease-in-out;
+//query
+$large: 1100px;
+$ex-medium: 900px;
+$medium: 768px;
+$small: 550px;
+$extraSmall: 450px;
+
+$heading: 70px;
+$heading-sm: 50px;
+$h1: 35px;
+$h2: 30px;
+$h3: 25px;
+$h4: 20px;
+$font-base: 16px;
+$font-base-lg: 18px;
+
+
+@mixin content($color-default, $color-main, $color-card) {
+    .checkout-container{
+        padding: $padding-margin-md;
+        padding-bottom: $padding-margin-ex-sm;
+        font-family: Arial, Helvetica, sans-serif;
+        @media (max-width: $extraSmall) {
+            padding: $padding-margin-md $padding-margin-ex-sm;
+            padding-bottom: $padding-margin-ex-sm;
+        }
+
+        .check-content{
+            display: flex;
+            @media (max-width: $medium) {
+                flex-direction: column;
+             }
+            .left-content{
+                flex: 1;
+                @media (max-width: $medium) {
+                    order: 2;
+                 }
+                span{
+                    color: $color-main;
+                    font-size: $font-base-lg;
+                    display: block;
+                    margin-bottom: $padding-margin-ex-sm;
+                }
+
+                form{
+                    input,textarea{
+                        display: block;
+                        width: 100%;
+                        color: $color-main;
+                        background: rgba($color-main, $alpha: 0.2);
+                        padding: 10px;
+                        border: 1px solid transparent;
+                        margin-bottom: $padding-margin-ex-sm;
+                        &:focus{
+                            outline: none;
+                        }
+                    }
+
+                    .name,.region{
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        grid-gap: 30px;
+                    }
+
+                    .checked-box-container{
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-start;
+                        input{
+                            background: red;
+                            margin: auto 0;
+                            width: auto;
+                            margin-right: 10px;
+                        }
+                        label{
+                            font-size: 15px;
+                            color: rgba($color-main, $alpha: 0.7);
+                        }
+                    }
+                    .btn-container{
+                        margin-top: $padding-margin-ex-sm;
+                        button{
+                            width: 280px;
+                            height: 40px;
+                            font-size: $font-base-lg;
+                            font-weight: 500;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: $color-main;
+                            background: rgba($color-main, $alpha: 0.2);
+                            border: 1px solid rgba($color-main, $alpha: 0.2);
+                            border-radius: 5px;
+                            cursor: pointer;
+                            transition: $transition;
+                            @media (max-width: $extraSmall) {
+                               font-size: $font-base;
+                            }
+                            &:focus{
+                                outline: none;
+                            }
+                            &:hover{
+                                background-color: rgba($color-card, $alpha: 0.5)
+                            }
+                        }
+                    }
+                }
+            }
+            .right-content{
+                flex: 1;
+                margin-left: $padding-margin-sm;
+                @media (max-width: $medium) {
+                    margin-left: 0;
+                    margin-bottom: $padding-margin-sm;
+                 }
+                h3{
+                    font-size: $h3;
+                    font-family: 'Oswald', sans-serif;
+                    font-weight: 400;
+                    letter-spacing: 1px;
+                    margin-bottom: $padding-margin-ex-sm;
+                }
+                .subtotal{
+                    padding: $padding-margin-ex-sm 0;
+                    display: flex;
+                    justify-content: space-between;
+                    border-top: 1px solid rgba($color-main, $alpha: 0.2)
+                }
+                strong{
+                    font-size: $font-base-lg;
+                }
+            }
+        }
+    }
+}
+
+
+.light-theme {
+    @include content($clr-bcg-lignt, $clr-font-light,$clr-card-back-light);
+  }
+  
+  .dark-theme {
+    @include content($clr-bcg-dark, $clr-font-dark,$clr-card-back-dark);
+  }

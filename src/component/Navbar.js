@@ -245,7 +245,7 @@ const handleDecrease = (id) =>{
                         {cartList && cartList.map((item,ind) => {
                                 return(
                                     <div className="cart-item" key={ind}>
-                                        <div className="img-container">
+                                        <div className="img-container" onClick={() => {location.push(`/product/${item.id}`); setCartDrawerOpen(false)}}>
                                             <img src={item.img}/>
                                         </div>
                                         <div className="cart-content">
@@ -255,7 +255,7 @@ const handleDecrease = (id) =>{
                                                 <span className="bottom" onClick={() => handleDecrease(item.id)}></span>
                                             </div>
                                             {/* <span className="into"><FaTimes /></span> */}
-                                            <h4>${item.price}</h4>
+                                            <h4>${(Math.round(item.price * 100) / 100).toFixed(2)}</h4>
                                         </div>
                                         <div className="remove-btn">
                                             <span onClick={() => {deleteCartItem(item.id); setRefCounter(refCounter + 1)}}><FaTimes /></span>
@@ -265,10 +265,10 @@ const handleDecrease = (id) =>{
                             })}
                     </div>
                     <div className="drawer-bottom-container">
-                        <strong>Total: ${totalPrice}</strong>
+                        <strong>Total: ${(Math.round(totalPrice * 100) / 100).toFixed(2)}</strong>
                         <div className="btn-group">
-                            <button>View cart</button>
-                            <button>Checkout</button>
+                            <button onClick={() => {location.push('/full-cart');setCartDrawerOpen(false)}}>View cart</button>
+                            <button onClick={() => {location.push('/checkout');setCartDrawerOpen(false)}}>Checkout</button>
                         </div>
                     </div>
                 </div>

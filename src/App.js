@@ -13,6 +13,8 @@ import SingleProduct from './page/SingleProduct';
 import ScrollToTopCopy from './ScrollToTop copy';
 import SingleBlog from './page/SingleBlog';
 import AllBlog from './page/AllBlog';
+import FullCart from './page/FullCart';
+import Checkout from './page/Checkout';
 
 
 
@@ -51,6 +53,12 @@ function App() {
         </Route>
         <Route exact path="/all-blog">
           <AllBlog />
+        </Route>
+        <Route exact path="/full-cart">
+          <FullCart />
+        </Route>
+        <Route exact path="/checkout">
+          <Checkout />
         </Route>
         <Route exact path="*">
           <Error />

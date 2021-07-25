@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Festive&family=Roboto&family=Tangerine:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&display=swap');
+//font-family: 'Oswald', sans-serif;
 
 $clr-bcg-lignt: rgb(255, 190, 106);
 $clr-font-light: rgb(0, 0, 0);
@@ -37,9 +38,57 @@ $font-base-lg: 18px;
     .error-container{
         padding: $padding-margin-md;
         padding-bottom: $padding-margin-ex-sm;
+        font-family: 'Oswald', sans-serif;
+        min-height: 70vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         @media (max-width: $extraSmall) {
             padding: $padding-margin-md $padding-margin-ex-sm;
             padding-bottom: $padding-margin-ex-sm;
+        }
+
+        h1{
+            font-size: $heading;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: $padding-margin-ex-sm;
+
+            span{
+                color: red;
+            }
+        }
+
+        strong{
+            display: block;
+            font-size: $font-base-lg;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: $padding-margin-sm;
+        }
+
+        button{
+            width: 120px;
+            height: 40px;
+            font-size: $font-base-lg;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $color-main;
+            background-color: rgba($color-main, $alpha: 0.2);
+            border: 1px solid rgba($color-main, $alpha: 0.2);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: $transition;
+            &:focus{
+                outline: none;
+            }
+            &:hover{
+                background-color: rgba($color-main, $alpha: 0.3)
+            }
         }
     }
 }

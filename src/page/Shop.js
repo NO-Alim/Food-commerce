@@ -75,7 +75,7 @@ const Shop = () => {
                     <div className="filter-content">
                         <h3 className="filter-input-label">Search product</h3>
                         <form>
-                            <input type="text" placeholder="Type here" className="filter-input" />
+                            <input className="filter-input" type="text" value={searchValue} placeholder="Type Here" onChange={(e) => setSearchValue(e.target.value)} />
                         </form>
                     <div className="filter-item">
                             <div className="filter-accordion" onClick={() => setSearchAccordion(!searchAccordion)}>
