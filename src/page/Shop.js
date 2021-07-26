@@ -13,7 +13,7 @@ const Shop = () => {
     const {product,loading,handleAddCart} = useGlobalContext();
     const [loadNumber, setLoadNumber] = useState(6);
     const loadbuttonRef = useRef(null);
-    const [slideAccordion, setSlideAccordion] = useState(true);
+    const [slideAccordion, setSlideAccordion] = useState(false);
     const [searchAccordion, setSearchAccordion] = useState(true);
     const [searchValue, setSearchValue] = useState('');
     const [rangeMin, setRangeMin] = useState(0);
@@ -92,7 +92,7 @@ const Shop = () => {
                                 <span>{slideAccordion ? <FiMinus />: <FiPlus />}</span>
                             </div>
                             <div className={`accordion-content ${slideAccordion ? 'active':null}`}>
-                                <MultiRangeSlider min={rangeMin} max={rangeMax} />
+                                <MultiRangeSlider x={rangeMin} y={rangeMax} />
                             </div>
                         </div>
                     </div>

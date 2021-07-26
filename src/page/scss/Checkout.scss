@@ -99,7 +99,7 @@ $font-base-lg: 18px;
                     .btn-container{
                         margin-top: $padding-margin-ex-sm;
                         button{
-                            width: 280px;
+                            width: 230px;
                             height: 40px;
                             font-size: $font-base-lg;
                             font-weight: 500;
@@ -114,6 +114,8 @@ $font-base-lg: 18px;
                             transition: $transition;
                             @media (max-width: $extraSmall) {
                                font-size: $font-base;
+                               min-width: 100%;
+                               width: 100%;
                             }
                             &:focus{
                                 outline: none;

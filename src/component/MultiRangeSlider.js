@@ -1,21 +1,30 @@
 import React,{useRef,useState,useEffect,useCallback} from 'react'
+import { useGlobalContext } from '../context';
 import './scss/MultiSlider.scss'
 
 //const MultiRangeSlider = ({min,max}) => {
-const MultiRangeSlider = ({min, max}) => {
-  //const {shopData, setShopData,saleData, setSaleData} = useGlobalContext();
-
+const MultiRangeSlider = ({x,y}) => {
+  const min = (Math.round(x * 100) / 100).toFixed(2);
+  const max = (Math.round(y * 100) / 100).toFixed(2);
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef(null);
+  const {rangeValue, setRangeValue} = useGlobalContext();
 
   // Convert to percentage
   const getPercent = useCallback(
       (value: number) => Math.round(((value - min) / (max - min)) * 100),
       [min, max]
   );
+
+  useEffect(() =>{
+    setMinVal(min);
+    setMaxVal(max);
+    minValRef.current = min;
+    maxValRef.current = max;
+  },[x,y])
 
   // Set width of the range to decrease from the left side
   useEffect(() => {
@@ -26,7 +35,7 @@ const MultiRangeSlider = ({min, max}) => {
       range.current.style.left = `${minPercent}%`;
       range.current.style.width = `${maxPercent - minPercent}%`;
       }
-  }, [minVal, getPercent,min,max]);
+  }, [minVal, getPercent,min,max,x,y]);
 
   // Set width of the range to decrease from the right side
   useEffect(() => {
@@ -36,13 +45,13 @@ const MultiRangeSlider = ({min, max}) => {
       if (range.current) {
       range.current.style.width = `${maxPercent - minPercent}%`;
       }
+      setRangeValue({
+        min: minVal,
+        max: maxVal
+      })
+  }, [maxVal,minVal, getPercent,min,max]);
 
-  }, [maxVal, getPercent,min,max]);
-
-  useEffect(() =>{
-    setMinVal(min);
-    setMaxVal(max)
-  },[min,max])
+  
 
   // // const handleSlideShop = () => {
   // //   //const filterShop = shopData.filter(item => item.price >= minVal);

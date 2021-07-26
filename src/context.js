@@ -8,6 +8,10 @@ const AppProvider = ({children}) => {
     const [refCounter, setRefCounter] = useState(1);
     const [searchTerm, setSearchTerm] = useState('b');
     const [product, setProduct] = useState([]);
+    const [rangeValue, setRangeValue] = useState({
+        min: 0,
+        max: 0
+    })
 
     let minPrice = Math.min.apply(null, product.map(item => item.price));
     let maxPrice = Math.max.apply(null, product.map(item => item.price));
@@ -144,7 +148,7 @@ const AppProvider = ({children}) => {
         fetchProduct();
     },[searchTerm,fetchProduct])
 
-    return <AppContext.Provider value={{loading,product,searchTerm,setSearchTerm, deleteCartItem,handleAddCart,refCounter, setRefCounter}}>{children}</AppContext.Provider>
+    return <AppContext.Provider value={{loading,product,searchTerm,setSearchTerm, deleteCartItem,handleAddCart,refCounter, setRefCounter,rangeValue, setRangeValue}}>{children}</AppContext.Provider>
 }
 
 export const useGlobalContext = () => {

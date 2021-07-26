@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useRef} from 'react'
 import {useGlobalContext} from '../context'
 import Modal from 'react-modal';
 import './scss/Checkout.scss'
@@ -13,10 +13,77 @@ const Checkout = () => {
     const [cartList, setCartList] = useState(JSON.parse(localStorage.getItem('cartList')));
     const [totalPrice, setTotalPrice] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [state, setState] = useState({
+        firstName: '',
+        lastName: '',
+        address: '',
+        apartment: '',
+        city: '',
+        country:'',
+        post: ''
+    });
+    const firstNameRef = useRef(null);
+    const addressRef = useRef(null);
+    const apartmentRef = useRef(null);
+    const cityRef = useRef(null);
+    const countryRef = useRef(null);
+    const postRef = useRef(null);
+
+
     const location = useHistory();
-    const toggleModal = (e) => {
-        e.preventDefault()
+    const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
+    }
+
+    const handleChange = (e) => {
+        setState({
+            ...state,
+            [e.target.name]:e.target.value
+        })
+        if (e.target.name === 'firstName') {
+            firstNameRef.current.style.borderColor = 'transparent'
+        }
+        if (e.target.name === 'address') {
+            addressRef.current.style.borderColor = 'transparent'
+        }
+
+        if (e.target.name === 'apartment') {
+            apartmentRef.current.style.borderColor = 'transparent'
+        }
+        if (e.target.name === 'city') {
+            cityRef.current.style.borderColor = 'transparent'
+        }
+        if (e.target.name === 'country') {
+            countryRef.current.style.borderColor = 'transparent'
+        }
+        if (e.target.name === 'post') {
+            postRef.current.style.borderColor = 'transparent'
+        }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (state.firstName && state.address && state.apartment && state.city && state.country && state.post) {
+            setIsModalOpen(!isModalOpen);
+        }
+        if (!state.firstName) {
+            firstNameRef.current.style.borderColor = 'red'
+        }
+        if (!state.address) {
+            addressRef.current.style.borderColor = 'red'
+        }
+        if (!state.apartment) {
+            apartmentRef.current.style.borderColor = 'red'
+        }
+        if (!state.city) {
+            cityRef.current.style.borderColor = 'red'
+        }
+        if (!state.country) {
+            countryRef.current.style.borderColor = 'red'
+        }
+        if (!state.post) {
+            postRef.current.style.borderColor = 'red'
+        }
     }
 
     useEffect(() => {
@@ -37,28 +104,28 @@ const Checkout = () => {
                     <span>Shipping address</span>
                     <form>
                         <div className="name">
-                            <input type="text" placeholder="First name"/>
-                            <input type="text" placeholder="Last name" />
+                            <input type="text" value={state.firstName} name="firstName" onChange={(e) => handleChange(e)} placeholder="First name*" ref={firstNameRef}/>
+                            <input type="text" value={state.lastName} name="lastName" onChange={(e) => handleChange(e)} placeholder="Last name" />
                         </div>
                         <div className="address">
-                            <input type="text" placeholder="Address" />
+                            <input type="text" value={state.address} name="address" onChange={(e) => handleChange(e)} placeholder="Address*" ref={addressRef}/>
                         </div>
                         <div className="home">
-                            <input type="text" placeholder="Apartment, suite, etc." />
+                            <input type="text" value={state.apartment} name="apartment" onChange={(e) => handleChange(e)} placeholder="Apartment, suite, etc.*" ref={apartmentRef} />
                         </div>
                         <div className="city">
-                            <input type="text" placeholder="City" />
+                            <input type="text" value={state.city} name="city" onChange={(e) => handleChange(e)} placeholder="City*" ref={cityRef}/>
                         </div>
                         <div className="region">
-                            <input type="text" placeholder="Country / region"/>
-                            <input type="text" placeholder="Postal code" />
+                            <input type="text" value={state.country} name="country" onChange={(e) => handleChange(e)} placeholder="Country / region*" ref={countryRef}/>
+                            <input type="text" value={state.post} name="post" onChange={(e) => handleChange(e)} placeholder="Postal code*" ref={postRef}/>
                         </div>
                         <div className="checked-box-container">
                             <input type="checkbox" />
                             <label htmlFor="checkbox">Save this information for next time.</label>
                         </div>
                         <div className="btn-container">
-                            <button onClick={toggleModal}>Continue to shipping</button>
+                            <button onClick={handleSubmit}>Continue to shipping</button>
                             <Modal
                             isOpen={isModalOpen}
                             onRequestClose={toggleModal}

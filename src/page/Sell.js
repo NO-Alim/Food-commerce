@@ -9,10 +9,10 @@ import { useHistory } from 'react-router-dom'
 
 const Sell = () => {
 
-    const {product,loading,handleAddCart} = useGlobalContext();
+    const {product,loading,handleAddCart,rangeValue} = useGlobalContext();
     const [loadNumber, setLoadNumber] = useState(6);
     const loadbuttonRef = useRef(null);
-    const [slideAccordion, setSlideAccordion] = useState(true);
+    const [slideAccordion, setSlideAccordion] = useState(false);
     const [searchAccordion, setSearchAccordion] = useState(true);
     const [rangeMin, setRangeMin] = useState(0);
     const [rangeMax, setRangeMax] = useState(0);
@@ -36,14 +36,14 @@ const Sell = () => {
             let minPrice = Math.min.apply(null, products.map(item => item.price));
             let maxPrice = Math.max.apply(null, products.map(item => item.price));
             //edit localstroge data
-            price[0].sellMinPrice = minPrice * (1 - (percentage ));
-            price[0].sellMaxPrice = maxPrice * (1 - (percentage ));
+            price[0].minPrice = minPrice;
+            price[0].maxPrice = maxPrice;
             localStorage.setItem('price',JSON.stringify(price))
         } 
         
         if (products.length <= 0){
-            price[0].sellMinPrice = 0;
-            price[0].sellMaxPrice = 10;
+            price[0].minPrice = 0;
+            price[0].maxPrice = 0;
             localStorage.setItem('price',JSON.stringify(price));
         }
         setRangeMin(price[0].sellMinPrice);
@@ -51,18 +51,9 @@ const Sell = () => {
     },[products])
 
     // useEffect(() => {
-    //     const buttondisable = () => {
-    //         if (loadNumber >= product.length) {
-    //             loadbuttonRef.current.disabled = true;
-    //         } else{
-    //             loadbuttonRef.current.disabled = false;
-    //         }
-    //     }
-    //     buttondisable();
-    //     return () => {
-    //         buttondisable();
-    //     }
-    // },[product,loadNumber])
+    //     var filteredProduct = product.filter(item => (item.price >= rangeValue.min && item.price <= rangeValue.max));
+
+    // },[rangeValue])
 
     if (loading) {
         return(
@@ -94,7 +85,7 @@ const Sell = () => {
                                 <span>{slideAccordion ? <FiMinus />: <FiPlus />}</span>
                             </div>
                             <div className={`accordion-content ${slideAccordion ? 'active':null}`}>
-                                <MultiRangeSlider min={rangeMin} max={rangeMax} />
+                                <MultiRangeSlider x={rangeMin} y={rangeMax} />
                             </div>
                         </div>
                     </div>

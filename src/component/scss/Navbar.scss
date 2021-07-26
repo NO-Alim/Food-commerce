@@ -152,7 +152,7 @@ $font-base-lg: 18px;
               }
               .cart-items-price{
                 @media (max-width: $ex-medium) {
-                  display: none;
+                 display: none;
                 }
                 span{
                   font-size: $font-base-lg;
@@ -161,16 +161,29 @@ $font-base-lg: 18px;
                   color: rgba($color-card, $alpha: 1);
                   padding: 0 5px;
                 }
-              }
-
               .menu{
                 display: none;
+                background: red;
                 @media (max-width: $ex-medium) {
                   display: block;
                 }
-                span{
-                  font-size: $h2;
-                  cursor: pointer;
+                //
+                .menu-container{
+                  background: red;
+                  width: 30px;
+                  height: 30px;
+                  display: block;
+                  .menu-bar{
+                    width: 30px;
+                    height: 5px;;
+                    background: red;
+                  }
+                }
+
+
+
+
+                //
                 }
               }
             }

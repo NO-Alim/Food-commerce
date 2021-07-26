@@ -196,7 +196,14 @@ const handleDecrease = (id) =>{
                                 <span>{cartList ? <span>{cartList.length}</span> : <span>0</span>}<span className="spacial-tag">/</span>${cartList ? cartList.length > 0 ? <span>{(Math.round((cartList.map(item => item.price * item.quantity).reduce((prev,next) => prev + next)) * 100) / 100).toFixed(2)}</span>: 0 : 0}</span>
                             </div>
                             <div className="menu" ref={menuRef}>
-                                <span onClick={() => toggleDrawer()}><FiMenu /></span>
+                                {/* <span onClick={() => toggleDrawer()}><FiMenu /></span> */}
+                                <div className="menu-container">
+                                    <div className={`menus ${toggleCartDrawer ? 'active': null}`} onClick={toggleCartDrawer}>
+                                        <span className="menu-bar"></span>
+                                        <span className="menu-bar"></span>
+                                        <span className="menu-bar"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
