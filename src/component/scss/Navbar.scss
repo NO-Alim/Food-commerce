@@ -161,30 +161,41 @@ $font-base-lg: 18px;
                   color: rgba($color-card, $alpha: 1);
                   padding: 0 5px;
                 }
+              }
               .menu{
                 display: none;
-                background: red;
                 @media (max-width: $ex-medium) {
                   display: block;
                 }
                 //
                 .menu-container{
-                  background: red;
-                  width: 30px;
-                  height: 30px;
-                  display: block;
-                  .menu-bar{
-                    width: 30px;
-                    height: 5px;;
-                    background: red;
+                  display: none;
+                  width: 25px;
+                  @media screen and (max-width: $ex-medium) {
+                      display: block;
                   }
-                }
-
-
-
-
+                  .menus{
+                      display: flex;
+                      flex-direction: column;
+                      .menu-bar{
+                          background: $color-main;
+                          width: 30px;
+                          height: 3px;
+                          margin: 3px 0;
+                          transition: all 0.3s ease-in-out;
+                      }
+                      &.active .menu-bar:first-child{
+                          transform: rotate(-45deg) translate(-9px, 4px);
+                      }
+                      &.active .menu-bar:nth-child(2){
+                          opacity: 0;
+                      }
+                      &.active .menu-bar:last-child{
+                          transform: rotate(45deg) translate(-8px, -5px);
+                      }
+                  }
+              }
                 //
-                }
               }
             }
           }

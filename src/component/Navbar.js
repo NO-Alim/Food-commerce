@@ -198,10 +198,10 @@ const handleDecrease = (id) =>{
                             <div className="menu" ref={menuRef}>
                                 {/* <span onClick={() => toggleDrawer()}><FiMenu /></span> */}
                                 <div className="menu-container">
-                                    <div className={`menus ${toggleCartDrawer ? 'active': null}`} onClick={toggleCartDrawer}>
-                                        <span className="menu-bar"></span>
-                                        <span className="menu-bar"></span>
-                                        <span className="menu-bar"></span>
+                                    <div className={`menus ${drawerOpen ? 'active': null}`} onClick={() => toggleDrawer()}>
+                                        <div className="menu-bar"></div>
+                                        <div className="menu-bar"></div>
+                                        <div className="menu-bar"></div>
                                     </div>
                                 </div>
                             </div>
