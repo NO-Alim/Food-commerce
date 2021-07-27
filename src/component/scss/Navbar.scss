@@ -325,6 +325,9 @@ $font-base-lg: 18px;
                   cursor: pointer;
                   display: none;
                   transition: $transition;
+                  @media screen and (max-width: $small) {
+                      display: block;
+                  }
                   &:hover{
                       border-width: 2px;
                   }
@@ -341,6 +344,9 @@ $font-base-lg: 18px;
                   cursor: pointer;
                   display: none;
                   transition: $transition;
+                  @media screen and (max-width: $small) {
+                      display: block;
+                  }
                   &:hover{
                       border-width: 2px;
                   }
