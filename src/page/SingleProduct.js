@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import Loader from '../component/Loader';
 import { useGlobalContext } from '../context';
 import './scss/SingleProduct.scss'
@@ -11,6 +11,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const SingleProduct = () => {
+    const location = useHistory();
     const {id} = useParams();
     const {product,loading,refCounter,setRefCounter} = useGlobalContext();
     const [quantity, setQuantity] = useState(1);
@@ -22,7 +23,7 @@ const SingleProduct = () => {
         cardId: null,
         price: null,
         priceTwo: null,
-        quantity: null,
+        quantity: quantity,
         img: 'd'
     })
     const [cartList, setCartList] = useState([]);
@@ -133,11 +134,11 @@ const SingleProduct = () => {
                                         </div>
                                         <div className="customer-sec">
                                             <div className="quantity">{quantity}
-                                            <span className="top" onClick={() => setQuantity(quantity + 1)}></span>
-                                            <span className="bottom" onClick={() => handleDecrease()}></span>
+                                            <span className="top"></span>
+                                            <span className="bottom"></span>
                                             </div>
                                             <button className="add-btn" onClick={() => handleAddCart()}>Add Card</button>
-                                            <button className="buy-btn">Buy Now</button>
+                                            <button className="buy-btn" onClick={() => {handleAddCart();location.push('/checkout')}}>Buy Now</button>
                                             <span className="heart"><FaRegHeart /></span>
                                         </div>
                                     </div>
